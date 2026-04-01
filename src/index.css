@@ -1,0 +1,9 @@
+/* Custom styles for a clean login page */
+body {
+  font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+  background-color: #f8fafc;
+}
+
+input, button, label {
+  font-family: inherit;
+}

@@ -4,6 +4,7 @@ import authReducer      from './slices/authSlice';
 import candidateReducer from './slices/candidateSlice';
 import hrJobReducer     from './slices/hrJobSlice';
 import dashboardReducer from './slices/dashboardSlice';
+import sidebarReducer   from './slices/sidebarSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     candidate: candidateReducer,
     hrJob:     hrJobReducer,
     dashboard: dashboardReducer,
+    sidebar:   sidebarReducer,
   },
 });
 
