@@ -65,4 +65,3 @@ const JobPostingsTable = ({ jobs, onEdit, onDelete, onToggleStatus }) => {
 };
 
 export default JobPostingsTable;
-

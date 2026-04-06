@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import JobPostingsTable from './JobPostingsTable';
 import CreateEditJobModal from './CreateEditJobModal';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import Sidebar from '../../components/hr/Sidebar';
-import { fetchJobs, toggleJobStatus } from '../../store/slices/hrJobSlice.js';
+
+import {
+  fetchJobs,
+  toggleJobStatus,
+  createJob,
+  updateJob,
+  deleteJob
+} from '../../store/slices/hrJobSlice';
+
 import './JobPosting.css';
 
 const JobPosting = () => {
   const dispatch = useDispatch();
   const { jobs, loading } = useSelector((state) => state.hrJob);
-  
+
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -39,22 +48,45 @@ const JobPosting = () => {
     dispatch(toggleJobStatus({ jobId, status }));
   };
 
-  const handleSaveJob = (job) => {
-    // Mock save - dispatch would go here with real thunks
-    console.log('Save job:', job);
-    // Add to local jobs for demo
-    const newJob = { ...job, id: Date.now() };
-    // dispatch(createJob(newJob)); // when thunk ready
-    // dispatch(fetchJobs()); // refresh list
-    setShowCreateModal(false);
-    setShowEditModal(false);
+  const handleSaveJob = async (job) => {
+    try {
+      if (selectedJob) {
+        await dispatch(
+          updateJob({
+            jobId: selectedJob._id || selectedJob.id,
+            jobData: job
+          })
+        ).unwrap();
+      } else {
+        await dispatch(createJob(job)).unwrap();
+      }
+
+      dispatch(fetchJobs());
+      setShowCreateModal(false);
+      setShowEditModal(false);
+      setSelectedJob(null);
+    } catch (error) {
+      console.error('Error saving job:', error);
+    }
   };
 
-  const handleConfirmDelete = () => {
-    // TODO: Add delete thunk
-    console.log('Delete job:', selectedJob.id);
-    setShowDeleteModal(false);
+  const handleConfirmDelete = async () => {
+    try {
+      await dispatch(deleteJob(selectedJob._id || selectedJob.id)).unwrap();
+      dispatch(fetchJobs());
+      setShowDeleteModal(false);
+      setSelectedJob(null);
+    } catch (error) {
+      console.error('Error deleting job:', error);
+    }
   };
+
+  // ✅ FIX: pastikan jobs selalu array
+  const safeJobs = Array.isArray(jobs)
+    ? jobs
+    : Array.isArray(jobs?.data)
+    ? jobs.data
+    : [];
 
   if (loading) {
     return <div>Loading jobs...</div>;
@@ -63,27 +95,39 @@ const JobPosting = () => {
   return (
     <div className="job-posting-layout">
       <Sidebar />
-      <div className="job-posting-main">
-        <div className="job-posting-header">
-          <div>
-            <h2>Job Postings</h2>
-            <p>Manage your active talent pipelines and AI-curated roles with surgical precision.</p>
+
+      <div className="content-wrapper">
+        <div className="job-posting-main">
+          <div className="job-posting-header">
+            <div>
+              <h2>Job Postings</h2>
+              <p>
+                Manage your active talent pipelines and AI-curated roles with
+                surgical precision.
+              </p>
+            </div>
+
+            <button className="create-job-btn" onClick={handleCreate}>
+              + Create New Job
+            </button>
           </div>
-          <button className="create-job-btn" onClick={handleCreate}>+ Create New Job</button>
+
+          <JobPostingsTable
+            jobs={safeJobs}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onToggleStatus={handleToggleStatus}
+          />
         </div>
-        <JobPostingsTable
-          jobs={jobs}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-          onToggleStatus={handleToggleStatus}
-        />
       </div>
+
       {showCreateModal && (
         <CreateEditJobModal
           onClose={() => setShowCreateModal(false)}
           onSave={handleSaveJob}
         />
       )}
+
       {showEditModal && (
         <CreateEditJobModal
           job={selectedJob}
@@ -91,6 +135,7 @@ const JobPosting = () => {
           onSave={handleSaveJob}
         />
       )}
+
       {showDeleteModal && (
         <DeleteConfirmationModal
           job={selectedJob}

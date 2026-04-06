@@ -18,7 +18,7 @@ export const hrJobService = {
   },
 
   updateJob: async (jobId, jobData) => {
-    const response = await axiosInstance.patch(`/api/hr/jobs/${jobId}`, jobData);
+    const response = await axiosInstance.put(`/api/hr/jobs/${jobId}`, jobData);
     return response.data;
   },
 

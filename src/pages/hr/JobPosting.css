@@ -1,32 +1,50 @@
 .job-posting-layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   background: #f7f8fa;
 }
 
-.job-posting-main {
-  flex: 1;
-  padding: 40px 48px;
+/* ✅ FIX UTAMA */
+.content-wrapper {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* MAIN CONTENT */
+.job-posting-main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
 .job-posting-header {
+  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 32px;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
 .job-posting-header h2 {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin: 0 0 0.25rem 0;
+  color: #4677c7;
 }
 
 .job-posting-header p {
   color: #7a7a8c;
   font-size: 1rem;
+  margin: 0;
 }
 
+/* BUTTON */
 .create-job-btn {
   background: #3b38f5;
   color: #fff;
@@ -36,8 +54,16 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
 }
+
 .create-job-btn:hover {
-  background: #2321b5;
+  background: #2563eb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .content-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
 }

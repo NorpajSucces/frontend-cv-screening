@@ -29,11 +29,9 @@ const Account = () => {
       return;
     }
 
-    // Simulate successful update
     setModalMessage('✓ Your password has been successfully updated!');
     setShowModal(true);
 
-    // Reset form
     setCurrentPassword('');
     setNewPassword('');
     setConfirmPassword('');
@@ -46,44 +44,46 @@ const Account = () => {
   return (
     <div className="account-page">
       <Sidebar />
+
       <main className="account-content">
         <div className="account-heading">
-          <h1>Settings</h1>
+          <h1>Account Settings</h1>
           <p>Manage your administrative security preferences.</p>
         </div>
+
         <div className="settings-card">
           <h2>
             <img src={IconSecurity} alt="Security Icon" className="security-icon-svg" />
             Security
           </h2>
+
           <p>Update your password and keep your account secure.</p>
 
           <div className="settings-row">
             <div className="settings-field">
-              <label htmlFor="currentPassword">Current Password</label>
-              <input 
-                id="currentPassword" 
-                type="password" 
+              <label>Current Password</label>
+              <input
+                type="password"
                 placeholder="••••••••"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
             </div>
+
             <div className="settings-field">
-              <label htmlFor="newPassword">New Password</label>
-              <input 
-                id="newPassword" 
-                type="password" 
+              <label>New Password</label>
+              <input
+                type="password"
                 placeholder="Min. 8 characters"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
+
             <div className="settings-field">
-              <label htmlFor="confirmPassword">Confirm New Password</label>
-              <input 
-                id="confirmPassword" 
-                type="password" 
+              <label>Confirm New Password</label>
+              <input
+                type="password"
                 placeholder="••••••••"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -91,7 +91,9 @@ const Account = () => {
             </div>
           </div>
 
-          <button className="settings-button" onClick={handleUpdatePassword}>Update Password</button>
+          <button className="settings-button" onClick={handleUpdatePassword}>
+            Update Password
+          </button>
 
           <p className="settings-note">
             Password must contain at least one uppercase letter, one special character, and one number.
@@ -99,7 +101,6 @@ const Account = () => {
         </div>
       </main>
 
-      {/* Modal */}
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -108,11 +109,15 @@ const Account = () => {
                 {modalMessage.includes('✓') ? '✓' : '!'}
               </div>
             </div>
+
             <div className="modal-body">
               <p>{modalMessage}</p>
             </div>
+
             <div className="modal-footer">
-              <button className="modal-button" onClick={closeModal}>Close</button>
+              <button className="modal-button" onClick={closeModal}>
+                Close
+              </button>
             </div>
           </div>
         </div>

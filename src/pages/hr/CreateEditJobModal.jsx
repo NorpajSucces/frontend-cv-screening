@@ -3,7 +3,7 @@ import './CreateEditJobModal.css';
 
 const defaultJob = {
   title: '',
-  department: '',
+  aboutPosition: '',
   location: '',
   employmentType: '',
   description: '',
@@ -11,14 +11,8 @@ const defaultJob = {
   status: 'open',
 };
 
-const employmentTypes = ['Full-time', 'Contract', 'Remote', 'Hybrid'];
-const departments = [
-  'Engineering',
-  'Product & Design',
-  'Marketing',
-  'Customer Success',
-  'Other',
-];
+const employmentTypes = ['Full-time', 'Part-time', 'Internship'];
+
 
 const CreateEditJobModal = ({ job, onClose, onSave }) => {
   const [form, setForm] = useState(job ? { ...job, requirements: job.requirements?.join('\n') } : defaultJob);
@@ -51,13 +45,13 @@ const CreateEditJobModal = ({ job, onClose, onSave }) => {
               <label>Job Title</label>
               <input name="title" value={form.title} onChange={handleChange} required placeholder="e.g. Senior Product Manager" />
             </div>
-            <div className="modal-field">
+            {/* <div className="modal-field">
               <label>Department</label>
               <select name="department" value={form.department} onChange={handleChange} required>
                 <option value="">Select</option>
                 {departments.map(dep => <option key={dep} value={dep}>{dep}</option>)}
               </select>
-            </div>
+            </div> */}
           </div>
           <div className="modal-row">
             <div className="modal-field">
@@ -82,7 +76,11 @@ const CreateEditJobModal = ({ job, onClose, onSave }) => {
           </div>
           <div className="modal-field">
             <label>Job Description</label>
-            <textarea name="description" value={form.description} onChange={handleChange} required placeholder="Describe the core mission and responsibilities of this role..." />
+            <textarea name="description" value={form.description} onChange={handleChange} required placeholder="Describe the core mission of this role..." />
+          </div>
+          <div className="modal-field">
+            <label>About Position</label>
+            <textarea name="aboutPosition" value={form.aboutPosition} onChange={handleChange} required placeholder="Describe responsibilities of this role..." />
           </div>
           <div className="modal-field">
             <label>Requirements</label>
