@@ -1,19 +1,21 @@
 import axiosInstance from './axiosInstance';
 
-export const authService = {
+const authService = {
   login: async (credentials) => {
-    const response = await axiosInstance.post('/api/auth/login', credentials);
+    // Axios base URL already includes '/api', so we use '/auth/login'
+    const response = await axiosInstance.post('/auth/login', credentials);
     return response.data;
   },
 
   logout: async () => {
-    const response = await axiosInstance.post('/api/auth/logout');
+    const response = await axiosInstance.post('/auth/logout');
     return response.data;
   },
 
   changePassword: async (passwordData) => {
-    const response = await axiosInstance.put('/api/auth/change-password', passwordData);
+    const response = await axiosInstance.put('/auth/change-password', passwordData);
     return response.data;
   }
 };
 
+export default authService;

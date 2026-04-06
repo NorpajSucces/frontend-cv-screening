@@ -6,7 +6,7 @@ export const fetchJobs = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await hrJobService.getJobs();
-      return response;
+      return response.data; // The array of jobs
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -18,7 +18,7 @@ export const toggleJobStatus = createAsyncThunk(
   async ({ jobId, status }, { rejectWithValue }) => {
     try {
       const response = await hrJobService.updateJobStatus(jobId, status);
-      return { _id: jobId, ...response.data };
+      return response.data; // { _id, title, status }
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -30,7 +30,7 @@ export const createJob = createAsyncThunk(
   async (jobData, { rejectWithValue }) => {
     try {
       const response = await hrJobService.createJob(jobData);
-      return response.data;
+      return response.data; // the created job object
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -42,7 +42,7 @@ export const updateJob = createAsyncThunk(
   async ({ jobId, jobData }, { rejectWithValue }) => {
     try {
       const response = await hrJobService.updateJob(jobId, jobData);
-      return { _id: jobId, ...response.data };
+      return response.data; // the updated job object
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }

@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // Auto attach JWT token ke setiap request
@@ -11,7 +14,12 @@ axiosInstance.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
-});
+},
+(error) => {
+  console.error('Error request:', error);
+  return Promise.reject(error);
+}
+);
 
 // Auto redirect ke login kalau token expired (401)
 axiosInstance.interceptors.response.use(

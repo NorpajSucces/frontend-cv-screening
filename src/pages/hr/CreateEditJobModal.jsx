@@ -31,7 +31,7 @@ const CreateEditJobModal = ({ job, onClose, onSave }) => {
     onSave({
       ...form,
       requirements: form.requirements.split('\n').map(r => r.trim()).filter(Boolean),
-      id: job?.id,
+      _id: job?._id || job?.id,
     });
   };
 
