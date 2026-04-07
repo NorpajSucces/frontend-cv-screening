@@ -22,3 +22,9 @@ body {
 .sidebar.collapsed ~ .main-content {
   margin-left: 80px;
 }
+
+input,
+button,
+label {
+  font-family: inherit;
+}

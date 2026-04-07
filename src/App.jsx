@@ -29,7 +29,7 @@ function App() {
 
       {/* HR Protected Routes */}
       <Route path="/hr/dashboard"         element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-      <Route path="/hr/job-posting"       element={<ProtectedRoute><JobPosting /></ProtectedRoute>} />
+      <Route path="/hr/job-postings"       element={<ProtectedRoute><JobPosting /></ProtectedRoute>} />
       <Route path="/hr/candidates"        element={<ProtectedRoute><Candidate /></ProtectedRoute>} />
       <Route path="/hr/candidates/:id"    element={<ProtectedRoute><CVSummaryDetail /></ProtectedRoute>} />
       <Route path="/hr/account"           element={<ProtectedRoute><Account /></ProtectedRoute>} />

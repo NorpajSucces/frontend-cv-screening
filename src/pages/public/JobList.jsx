@@ -1,13 +1,11 @@
-//sementara
-
 import React from 'react';
 
-const LandingPage = () => {
-    return (
-        <div>
-            <h1>Landing Page</h1>
-        </div>
-    );
+const JobList = () => {
+  return (
+    <div>
+      <h1>Job List Page</h1>
+    </div>
+  );
 };
 
-export default LandingPage;
+export default JobList;

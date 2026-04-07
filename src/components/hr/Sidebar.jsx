@@ -3,7 +3,7 @@ import {
     toggleSidebar,
 } from "../../store/slices/sidebarSlice";
 import { NavLink } from "react-router-dom";
-import "./sidebar.css";
+import "./Sidebar.css";
 
 export default function Sidebar() {
     const dispatch = useDispatch();
