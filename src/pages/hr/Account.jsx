@@ -45,59 +45,60 @@ const Account = () => {
     <div className="account-page">
       <Sidebar />
 
-      <main className="account-content">
-        <div className="account-heading">
-          <h1>Account Settings</h1>
-          <p>Manage your administrative security preferences.</p>
-        </div>
-
-        <div className="settings-card">
-          <h2>
-            <img src={IconSecurity} alt="Security Icon" className="security-icon-svg" />
-            Security
-          </h2>
-
-          <p>Update your password and keep your account secure.</p>
-
-          <div className="settings-row">
-            <div className="settings-field">
-              <label>Current Password</label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-              />
-            </div>
-
-            <div className="settings-field">
-              <label>New Password</label>
-              <input
-                type="password"
-                placeholder="Min. 8 characters"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-            </div>
-
-            <div className="settings-field">
-              <label>Confirm New Password</label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
+      <main className="main-content">
+        <div className='account-content'>
+          <div className="account-heading">
+            <h1>Account Settings</h1>
+            <p>Manage your administrative security preferences.</p>
           </div>
 
-          <button className="settings-button" onClick={handleUpdatePassword}>
-            Update Password
-          </button>
+          <div className="settings-card">
+            <h2>
+              Security
+            </h2>
 
-          <p className="settings-note">
-            Password must contain at least one uppercase letter, one special character, and one number.
-          </p>
+            <p>Update your password and keep your account secure.</p>
+
+            <div className="settings-row">
+              <div className="settings-field">
+                <label>Current Password</label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+              </div>
+
+              <div className="settings-field">
+                <label>New Password</label>
+                <input
+                  type="password"
+                  placeholder="Min. 8 characters"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+
+              <div className="settings-field">
+                <label>Confirm New Password</label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <button className="settings-button" onClick={handleUpdatePassword}>
+              Update Password
+            </button>
+
+            <p className="settings-note">
+              Password must contain at least one uppercase letter, one special character, and one number.
+            </p>
+          </div>
         </div>
       </main>
 

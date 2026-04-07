@@ -84,64 +84,64 @@ const JobPosting = () => {
   const safeJobs = Array.isArray(jobs)
     ? jobs
     : Array.isArray(jobs?.data)
-    ? jobs.data
-    : [];
+      ? jobs.data
+      : [];
 
   if (loading) {
     return <div>Loading jobs...</div>;
   }
 
   return (
-    <div className="job-posting-layout">
+    <div className="job-posting">
       <Sidebar />
+      <main className="main-content">
+          <div className="job-posting-main">
+            <div className="job-posting-header">
+              <div>
+                <h2>Job Postings</h2>
+                <p>
+                  Manage your active talent pipelines and AI-curated roles with
+                  surgical precision.
+                </p>
+              </div>
 
-      <div className="content-wrapper">
-        <div className="job-posting-main">
-          <div className="job-posting-header">
-            <div>
-              <h2>Job Postings</h2>
-              <p>
-                Manage your active talent pipelines and AI-curated roles with
-                surgical precision.
-              </p>
+              <button className="create-job-btn" onClick={handleCreate}>
+                + Create New Job
+              </button>
             </div>
 
-            <button className="create-job-btn" onClick={handleCreate}>
-              + Create New Job
-            </button>
+            <JobPostingsTable
+              jobs={safeJobs}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onToggleStatus={handleToggleStatus}
+            />
           </div>
 
-          <JobPostingsTable
-            jobs={safeJobs}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onToggleStatus={handleToggleStatus}
+        {showCreateModal && (
+          <CreateEditJobModal
+            onClose={() => setShowCreateModal(false)}
+            onSave={handleSaveJob}
           />
-        </div>
-      </div>
+        )}
 
-      {showCreateModal && (
-        <CreateEditJobModal
-          onClose={() => setShowCreateModal(false)}
-          onSave={handleSaveJob}
-        />
-      )}
+        {showEditModal && (
+          <CreateEditJobModal
+            job={selectedJob}
+            onClose={() => setShowEditModal(false)}
+            onSave={handleSaveJob}
+          />
+        )}
 
-      {showEditModal && (
-        <CreateEditJobModal
-          job={selectedJob}
-          onClose={() => setShowEditModal(false)}
-          onSave={handleSaveJob}
-        />
-      )}
+        {showDeleteModal && (
+          <DeleteConfirmationModal
+            job={selectedJob}
+            onClose={() => setShowDeleteModal(false)}
+            onConfirm={handleConfirmDelete}
+          />
+        )}
+      </main>
 
-      {showDeleteModal && (
-        <DeleteConfirmationModal
-          job={selectedJob}
-          onClose={() => setShowDeleteModal(false)}
-          onConfirm={handleConfirmDelete}
-        />
-      )}
     </div>
   );
 };

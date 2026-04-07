@@ -1,6 +1,6 @@
 .account-page {
   display: flex;
-  min-height: 100vh;
+  width: 100%;
   background: #f5f7fa;
 }
 
@@ -11,6 +11,7 @@
   margin-left: 260px; /* SESUAI LEBAR SIDEBAR */
   width: calc(100% - 260px);
   overflow-y: auto;
+  justify-content: center;
 }
 
 .account-heading {
@@ -35,6 +36,33 @@
   padding: 32px;
   border: 1px solid #e2e8f0;
   max-width: 700px;
+  justify-content: center;
+}
+
+.settings-card h2 {
+  font-size: 2rem;
+  font-weight: 100;
+  margin-left: 0px;
+  margin-bottom: 6px;
+  color: #000000;
+}
+
+.settings-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.settings-title .material-symbols-rounded {
+  font-size: 28px;
+  color: #4b6dbb;
+}
+
+.settings-title h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
 }
 
 /* FORM */
