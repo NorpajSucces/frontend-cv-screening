@@ -38,7 +38,7 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <NavLink to="/hr/job-postings" className="nav-link" data-title="Job Posting">
+                            <NavLink to="/hr/job-posting" className="nav-link" data-title="Job Posting">
                                 <span className="material-symbols-rounded">work_update</span>
                                 <span className="text">Job Posting</span>
                             </NavLink>
@@ -54,7 +54,7 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <NavLink to="/hr/logout" className="nav-link" data-title="Log out">
+                            <NavLink to="/" className="nav-link" data-title="Log out">
                                 <span className="material-symbols-rounded">logout</span>
                                 <span className="text">Log out</span>
                             </NavLink>

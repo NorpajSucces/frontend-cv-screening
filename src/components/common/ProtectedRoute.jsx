@@ -9,8 +9,11 @@ const ProtectedRoute = ({ children }) => {
     const verifyToken = () => {
       const token = localStorage.getItem('token');
       
-      // Jika ada token, maka dianggap sudah login
-      if (token) {
+      // Dev-mode: Otomatis login jika token kosong (Fitur dari branch aulia)
+      if (!token && import.meta.env.DEV) {
+        localStorage.setItem('token', 'dev-token');
+        setIsAuthenticated(true);
+      } else if (token) {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
@@ -29,7 +32,6 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  // Jika tidak login, tendang balik ke halaman login
   return isAuthenticated ? children : <Navigate to="/hr/login" replace />;
 };
 

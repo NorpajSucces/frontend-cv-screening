@@ -16,13 +16,11 @@ const Account = () => {
       setShowModal(true);
       return;
     }
-
     if (newPassword !== confirmPassword) {
       setModalMessage('New passwords do not match. Please try again.');
       setShowModal(true);
       return;
     }
-
     if (newPassword.length < 8) {
       setModalMessage('Password must be at least 8 characters long.');
       setShowModal(true);
@@ -31,20 +29,16 @@ const Account = () => {
 
     setModalMessage('✓ Your password has been successfully updated!');
     setShowModal(true);
-
     setCurrentPassword('');
     setNewPassword('');
     setConfirmPassword('');
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  const closeModal = () => setShowModal(false);
 
   return (
     <div className="account-page">
       <Sidebar />
-
       <main className="account-content">
         <div className="account-heading">
           <h1>Account Settings</h1>
@@ -53,10 +47,9 @@ const Account = () => {
 
         <div className="settings-card">
           <h2>
-            <img src={IconSecurity} alt="Security Icon" className="security-icon-svg" />
+            <img src={IconSecurity} alt="Security" className="security-icon-svg" />
             Security
           </h2>
-
           <p>Update your password and keep your account secure.</p>
 
           <div className="settings-row">
@@ -69,7 +62,6 @@ const Account = () => {
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
             </div>
-
             <div className="settings-field">
               <label>New Password</label>
               <input
@@ -79,7 +71,6 @@ const Account = () => {
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
-
             <div className="settings-field">
               <label>Confirm New Password</label>
               <input
@@ -109,15 +100,11 @@ const Account = () => {
                 {modalMessage.includes('✓') ? '✓' : '!'}
               </div>
             </div>
-
             <div className="modal-body">
               <p>{modalMessage}</p>
             </div>
-
             <div className="modal-footer">
-              <button className="modal-button" onClick={closeModal}>
-                Close
-              </button>
+              <button className="modal-button" onClick={closeModal}>Close</button>
             </div>
           </div>
         </div>

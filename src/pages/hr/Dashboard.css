@@ -1,0 +1,51 @@
+.dashboard {
+  display: flex;
+  width: 100%
+}
+
+.dashboard-header {
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #4677c7;
+}
+
+.dashboard-header h2 {
+  font-size: 12px;
+  font-weight: 200;
+  color: #64748b;
+}
+
+.divider {
+  width: flex;
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, #cbd5e1, transparent);
+  margin: 10px 0 20px 0;
+}
+
+.charts-grid {
+  display: flex;
+  gap: 20px;
+  width: 100%; 
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.table-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.table-section {
+  margin-top: 20px;
+}

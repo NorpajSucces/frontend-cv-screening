@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
@@ -18,9 +18,17 @@ import CVSummaryDetail from './pages/hr/CVSummaryDetail';
 import Account from './pages/hr/Account';
 
 function App() {
+  const location = useLocation();
+
+  // Logika untuk mengecek apakah kita berada di halaman HR atau Login HR
+  // Jika path dimulai dengan '/hr', maka Navbar & Footer Landing Page disembunyikan
+  const isHrPage = location.pathname.startsWith('/hr');
+
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar />
+      {/* Navbar hanya muncul jika BUKAN halaman HR */}
+      {!isHrPage && <Navbar />}
+
       <main>
         <Routes>
           {/* Public Routes */}
@@ -34,13 +42,19 @@ function App() {
 
           {/* HR Protected Routes */}
           <Route path="/hr/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          
+          {/* SAYA RAPIKAN: Cukup satu rute untuk Job Posting agar tidak bentrok */}
+          <Route path="/hr/job-postings" element={<ProtectedRoute><JobPosting /></ProtectedRoute>} />
           <Route path="/hr/job-posting" element={<ProtectedRoute><JobPosting /></ProtectedRoute>} />
+          
           <Route path="/hr/candidates" element={<ProtectedRoute><Candidate /></ProtectedRoute>} />
           <Route path="/hr/candidates/:id" element={<ProtectedRoute><CVSummaryDetail /></ProtectedRoute>} />
           <Route path="/hr/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
         </Routes>
       </main>
-      <Footer />
+
+      {/* Footer hanya muncul jika BUKAN halaman HR */}
+      {!isHrPage && <Footer />}
     </div>
   );
 }

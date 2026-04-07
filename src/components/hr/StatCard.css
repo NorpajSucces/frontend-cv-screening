@@ -1,0 +1,77 @@
+.stat-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card-modern {
+  background: #f1f5f9;
+  border-radius: 16px;
+  padding: 18px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  
+  align-items: center;
+  gap: 15px;
+
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.stat-card-modern:hover {
+  transform: translateY(-3px);
+  background: #e2e8f0;
+}
+
+/* ICON BOX */
+.stat-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: #c7d2fe;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon span {
+  font-size: 22px;
+  color: #4f46e5;
+}
+
+/* TEXT */
+.stat-content h2 {
+  font-size: clamp(18px, 2vw, 24px);
+  margin-left: 10px;
+  font-weight: 600;
+  color: #1e293b;
+  justify-content: left;
+}
+
+.stat-content p {
+  font-size: 13px;
+  margin-left: 10px;
+  color: #64748b;
+}
+
+/* INPUT hidden tapi tetap aktif */
+.stat-hidden-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}

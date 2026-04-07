@@ -1,18 +1,21 @@
+/* src/pages/hr/Account.css */
+
 .account-page {
   display: flex;
   min-height: 100vh;
-  background: #f5f7fa;
+  background: #f8fafc;
 }
 
-/* ✅ FIX UTAMA DI SINI */
+/* Bagian Content Utama */
 .account-content {
   flex: 1;
   padding: 40px 50px;
-  margin-left: 260px; /* SESUAI LEBAR SIDEBAR */
-  width: calc(100% - 260px);
-  overflow-y: auto;
+  margin-left: 270px; /* Menyesuaikan lebar sidebar */
+  width: calc(100% - 270px);
+  color: #1e293b;
 }
 
+/* Heading Area */
 .account-heading {
   margin-bottom: 36px;
 }
@@ -20,82 +23,159 @@
 .account-heading h1 {
   font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 6px;
-  color: #4b6dbb;
+  margin: 0 0 6px 0;
+  color: #0f172a;
+  letter-spacing: -0.6px;
 }
 
 .account-heading p {
+  margin: 0;
   color: #64748b;
+  font-size: 0.95rem;
 }
 
-/* CARD */
+/* Card Pengaturan */
 .settings-card {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   padding: 32px;
   border: 1px solid #e2e8f0;
   max-width: 700px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
 }
 
-/* FORM */
+.settings-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-card > p {
+  color: #64748b;
+  font-size: 0.92rem;
+  margin-bottom: 24px;
+}
+
+/* Form Fields */
 .settings-field {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .settings-field label {
-  font-size: 0.85rem;
-  font-weight: 600;
   display: block;
-  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: #475569;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .settings-field input {
   width: 100%;
   border: 1px solid #cbd5e1;
   border-radius: 8px;
-  padding: 11px 13px;
+  padding: 12px 14px;
   background: #f8fafc;
+  font-size: 0.95rem;
+  transition: all 0.2s;
 }
 
-/* BUTTON */
+.settings-field input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button */
 .settings-button {
-  margin-top: 20px;
+  margin-top: 10px;
   background: #4338ca;
   color: white;
   border: none;
-  padding: 11px 20px;
+  padding: 12px 24px;
   border-radius: 8px;
+  font-weight: 700;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-/* NOTE */
+.settings-button:hover {
+  background: #3730a3;
+}
+
 .settings-note {
-  margin-top: 15px;
-  font-size: 0.8rem;
+  margin-top: 20px;
+  font-size: 0.82rem;
   color: #64748b;
+  padding: 12px;
+  background: #f0f4ff;
+  border-left: 3px solid #4338ca;
+  border-radius: 4px;
 }
 
-/* MODAL */
+/* Icon */
+.security-icon-svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Modal Styles */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .modal-content {
-  background: white;
+  background: #fff;
   border-radius: 12px;
-  padding: 20px;
-  width: 300px;
+  width: 90%;
+  max-width: 400px;
+  overflow: hidden;
 }
 
-/* RESPONSIVE */
+.modal-header {
+  background: #4338ca;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-icon {
+  font-size: 32px;
+  color: #fff;
+}
+
+.modal-body {
+  padding: 24px;
+  text-align: center;
+}
+
+.modal-footer {
+  padding: 16px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-button {
+  background: #4338ca;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .account-content {
     margin-left: 0;

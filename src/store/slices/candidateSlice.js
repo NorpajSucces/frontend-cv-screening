@@ -7,7 +7,12 @@ const candidateSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setCandidates: (state, action) => {
+      state.candidates = action.payload;
+    },
+  },
 });
 
+export const { setCandidates } = candidateSlice.actions;
 export default candidateSlice.reducer;

@@ -1,7 +1,26 @@
+/* 1. Import Fonts di paling atas */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+/* 2. Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 3. Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+}
+
+/* 4. Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -20,6 +39,12 @@
   background: #94a3b8;
 }
 
-body {
-  font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+/* 5. Layout Helpers */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 80px;
 }

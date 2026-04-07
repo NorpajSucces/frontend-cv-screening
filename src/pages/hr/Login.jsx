@@ -20,17 +20,19 @@ const Login = () => {
 
     setLoading(true);
 
+    // Simulasi Login
     setTimeout(() => {
       localStorage.setItem("token", "dummy-token");
+      localStorage.setItem("user", JSON.stringify({ email, role: 'hr_admin' }));
       navigate("/hr/dashboard");
+      setLoading(false);
     }, 1000);
   };
 
   return (
     <div className="login-page">
       <div className="login-container">
-
-        {/* LEFT */}
+        {/* SISI KIRI: ILLUSTRATION */}
         <div className="login-illustration">
           <div className="illustration-circle"></div>
           <h2 className="illustration-title">Empowering Tech Talent</h2>
@@ -39,7 +41,7 @@ const Login = () => {
           </p>
         </div>
 
-        {/* RIGHT */}
+        {/* SISI KANAN: FORM */}
         <div className="login-form-section">
           <div className="login-header">
             <h1>HR Portal Dashboard</h1>
@@ -47,7 +49,6 @@ const Login = () => {
           </div>
 
           <form className="login-form" onSubmit={handleSubmit}>
-            
             {error && <div className="login-error">{error}</div>}
 
             <div className="login-field-group">
@@ -57,6 +58,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
+                required
               />
             </div>
 
@@ -67,6 +69,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
+                required
               />
             </div>
 
@@ -79,7 +82,6 @@ const Login = () => {
             © 2024 SmartRecruiter
           </div>
         </div>
-
       </div>
     </div>
   );
