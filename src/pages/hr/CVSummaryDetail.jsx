@@ -1,3 +1,11 @@
-export default function CVSummaryDetail() {
-  return <div className="pt-32 text-center">CV Summary Detail Page</div>;
-}
+import React from 'react';
+
+const CVSummaryDetail = () => {
+  return (
+    <div>
+      <h1>CV Summary Detail Page</h1>
+    </div>
+  );
+};
+
+export default CVSummaryDetail;

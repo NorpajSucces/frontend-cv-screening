@@ -1,0 +1,107 @@
+.job-table-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 24px;
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.job-table th, .job-table td {
+  padding: 16px 12px;
+  text-align: left;
+}
+
+.job-table th {
+  color: #7a7a8c;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.job-table td {
+  font-size: 1rem;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.employment-type {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.employment-type.full-time { background: #e6e8fd; color: #3b38f5; }
+.employment-type.contract { background: #fbeee6; color: #f5a623; }
+.employment-type.remote { background: #e6f7f1; color: #1bc47d; }
+.employment-type.hybrid { background: #f3e6fb; color: #a623f5; }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  margin-right: 8px;
+}
+.switch input { display: none; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 22px;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #3b38f5;
+}
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+.status-open { color: #1bc47d; font-weight: 600; }
+.status-closed { color: #f44336; font-weight: 600; }
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+.delete-btn { color: #f44336; }
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #7a7a8c;
+}
+.pagination-controls button {
+  background: #f2f2f2;
+  border: none;
+  border-radius: 8px;
+  margin: 0 2px;
+  padding: 4px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.pagination-controls .active {
+  background: #3b38f5;
+  color: #fff;
+}

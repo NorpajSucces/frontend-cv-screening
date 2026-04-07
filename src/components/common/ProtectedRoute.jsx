@@ -6,33 +6,30 @@ const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const verifyToken = async () => {
+    const verifyToken = () => {
       const token = localStorage.getItem('token');
-      if (!token) {
+      
+      // Jika ada token, maka dianggap sudah login
+      if (token) {
+        setIsAuthenticated(true);
+      } else {
         setIsAuthenticated(false);
-        setIsLoading(false);
-        return;
       }
-      try {
-        // Panggil API untuk memverifikasi token (opsional)
-        // const res = await api.verifyToken(token);
-        // setIsAuthenticated(res.valid);
-        setIsAuthenticated(true); // jika tidak pakai verifikasi backend
-      } catch (error) {
-        setIsAuthenticated(false);
-        localStorage.removeItem('token');
-      } finally {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
     };
 
     verifyToken();
   }, []);
 
   if (isLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-slate-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
   }
 
+  // Jika tidak login, tendang balik ke halaman login
   return isAuthenticated ? children : <Navigate to="/hr/login" replace />;
 };
 

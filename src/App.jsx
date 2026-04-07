@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/common/ProtectedRoute';
-
-// Layout components
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 
@@ -11,7 +9,7 @@ import { JobListPage } from './pages/public/JobListPage';
 import { JobDetailPage } from './pages/public/JobDetailPage';
 import { ApplyForm } from './pages/public/ApplyForm';
 
-// HR Pages (placeholder sementara)
+// HR Pages
 import Login from './pages/hr/Login';
 import Dashboard from './pages/hr/Dashboard';
 import JobPosting from './pages/hr/JobPosting';
@@ -20,7 +18,6 @@ import CVSummaryDetail from './pages/hr/CVSummaryDetail';
 import Account from './pages/hr/Account';
 
 function App() {
-  console.log('App render');
   return (
     <div className="min-h-screen bg-slate-50">
       <Navbar />

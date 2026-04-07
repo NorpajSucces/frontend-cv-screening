@@ -1,3 +1,11 @@
-export default function Candidate() {
-  return <div className="pt-32 text-center">Candidate List Page</div>;
-}
+import React from 'react';
+
+const Candidate = () => {
+  return (
+    <div>
+      <h1>Candidate Page</h1>
+    </div>
+  );
+};
+
+export default Candidate;

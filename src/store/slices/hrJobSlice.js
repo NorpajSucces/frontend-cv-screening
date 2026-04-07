@@ -1,40 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+// Placeholder thunks
+export const fetchJobs = createAsyncThunk('hrJob/fetchJobs', async () => []);
+export const createJob = createAsyncThunk('hrJob/createJob', async (data) => data);
+export const deleteJob = createAsyncThunk('hrJob/deleteJob', async (id) => id);
+export const toggleJobStatus = createAsyncThunk('hrJob/toggleJobStatus', async (data) => data);
+export const updateJob = createAsyncThunk('hrJob/updateJob', async (data) => data);
 
 const hrJobSlice = createSlice({
   name: 'hrJob',
   initialState: {
     jobs: [],
-    currentJob: null,
     loading: false,
     error: null,
   },
   reducers: {
-    setJobs: (state, action) => {
-      state.jobs = action.payload;
-    },
-    setCurrentJob: (state, action) => {
-      state.currentJob = action.payload;
-    },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
-    addJob: (state, action) => {
-      state.jobs.push(action.payload);
-    },
-    updateJob: (state, action) => {
-      const index = state.jobs.findIndex(job => job.id === action.payload.id);
-      if (index !== -1) {
-        state.jobs[index] = action.payload;
-      }
-    },
-    deleteJob: (state, action) => {
-      state.jobs = state.jobs.filter(job => job.id !== action.payload);
-    },
+    clearError: (state) => { state.error = null; },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchJobs.pending, (state) => { state.loading = true; })
+      .addCase(fetchJobs.fulfilled, (state, action) => {
+        state.loading = false;
+        state.jobs = action.payload;
+      })
+      .addCase(fetchJobs.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { setJobs, setCurrentJob, setLoading, setError, addJob, updateJob, deleteJob } = hrJobSlice.actions;
+export const { clearError } = hrJobSlice.actions;
 export default hrJobSlice.reducer;
