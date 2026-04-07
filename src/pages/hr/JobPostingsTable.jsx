@@ -38,10 +38,10 @@ const JobPostingsTable = ({ jobs, onEdit, onDelete, onToggleStatus }) => {
                 </td>
                 <td>
                   <button className="edit-btn" onClick={() => onEdit(job)}>
-                    <span role="img" aria-label="edit">✏️</span>
+                    <span role="img" aria-label="edit">edit</span>
                   </button>
                   <button className="delete-btn" onClick={() => onDelete(job)}>
-                    <span role="img" aria-label="delete">🗑️</span>
+                    <span role="img" aria-label="delete">delete</span>
                   </button>
                 </td>
               </tr>
