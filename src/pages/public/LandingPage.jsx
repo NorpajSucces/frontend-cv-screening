@@ -19,7 +19,7 @@ export const LandingPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, type: 'spring', bounce: 0.3 }}
             className="relative order-2 md:order-1"
-          >
+          > 
             <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] border-8 border-white">
               <img
                 src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200"
