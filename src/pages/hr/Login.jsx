@@ -3,12 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginHR } from "../../store/slices/authSlice";
 import "./Login.css";
+import login from "../../assets/login.png";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState("");
-  
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,11 +43,9 @@ const Login = () => {
 
         {/* LEFT */}
         <div className="login-illustration">
-          <div className="illustration-circle"></div>
-          <h2 className="illustration-title">Empowering Tech Talent</h2>
-          <p className="illustration-subtitle">
-            Connecting IT talent with the right opportunities.
-          </p>
+          <div className="login-illustration">
+            <img src={login} alt="Login Illustration" className="login-image" />
+          </div>
         </div>
 
         {/* RIGHT */}
@@ -54,7 +56,7 @@ const Login = () => {
           </div>
 
           <form className="login-form" onSubmit={handleSubmit}>
-            
+
             {/* Show Local Validation Error OR Backend API Error */}
             {(localError || error) && (
               <div className="login-error">{localError || error}</div>
@@ -72,12 +74,21 @@ const Login = () => {
 
             <div className="login-field-group">
               <label>Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-              />
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                />
+
+                <span
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </span>
+              </div>
             </div>
 
             <button className="login-button" disabled={loading}>
