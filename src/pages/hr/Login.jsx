@@ -1,36 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginHR } from "../../store/slices/authSlice";
 import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [localError, setLocalError] = useState("");
-  
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  // Retrieve loading and API error state from Redux
-  const { loading, error } = useSelector((state) => state.auth);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLocalError("");
+    setError("");
 
     if (!email || !password) {
-      setLocalError("Please enter email and password");
+      setError("Please enter email and password");
       return;
     }
 
-    // Call Redux Thunk
-    const resultAction = await dispatch(loginHR({ email, password }));
+    setLoading(true);
 
-    // If API returns success, redirect to dashboard
-    if (loginHR.fulfilled.match(resultAction)) {
+    setTimeout(() => {
+      localStorage.setItem("token", "dummy-token");
       navigate("/hr/dashboard");
-    }
+    }, 1000);
   };
 
   return (
@@ -55,10 +48,7 @@ const Login = () => {
 
           <form className="login-form" onSubmit={handleSubmit}>
             
-            {/* Show Local Validation Error OR Backend API Error */}
-            {(localError || error) && (
-              <div className="login-error">{localError || error}</div>
-            )}
+            {error && <div className="login-error">{error}</div>}
 
             <div className="login-field-group">
               <label>Email</label>

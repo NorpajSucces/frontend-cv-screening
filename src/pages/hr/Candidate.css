@@ -1,0 +1,199 @@
+.candidate {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 270px;
+  padding: 30px;
+  width: 100%;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.candidate-header {
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.candidate-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #4677c7;
+}
+
+.candidate-header h2 {
+  font-size: 12px;
+  font-weight: 200;
+  color: #64748b;
+}
+
+/* GRID UTAMA */
+.candidate-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* CARD GLOBAL */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ACTIVE JOBS */
+.active-jobs {
+  height: 100%;
+}
+.active-jobs .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.active-jobs .header span {
+  font-size: 12px;
+  color: #4677c7;
+  font-weight: 600;
+}
+
+/* JOB ITEM */
+.job-item {
+  padding: 15px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.job-item:hover {
+  background: #e2e8f0;
+}
+
+.job-item.active {
+  border-left: 4px solid #4677c7;
+  background: #eef2ff;
+}
+
+/* =TABLE=================================== */
+.table-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.candidate-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.candidate-table th {
+  text-align: left;
+  padding: 12px;
+  font-size: 13px;
+  color: #64748b;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.candidate-table th:hover {
+  color: #4677c7;
+}
+
+/* =COLUMN WIDTH=================== */
+.candidate-table th:nth-child(1) {
+  width: 35%;
+  text-align: center;
+}
+.candidate-table td:nth-child(1) {
+  width: 35%;
+}
+
+.candidate-table th:nth-child(2),
+.candidate-table td:nth-child(2) {
+  width: 25%;
+  text-align: center;
+}
+
+.candidate-table th:nth-child(3),
+.candidate-table td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+
+.candidate-table th:nth-child(4),
+.candidate-table td:nth-child(4) {
+  width: 20%;
+  text-align: center;
+}
+
+/* =BODY==================== */
+.candidate-table td {
+  padding: 14px 12px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+/* =ROW HOVER================ */
+.candidate-table tr {
+  transition: 0.2s;
+}
+
+.candidate-table tr:hover {
+  background: #f9fafb;
+}
+
+.candidate-table th {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.candidate-table th:hover {
+  background: #eef2ff;
+  color: #4677c7;
+}
+
+/* =SCORE BAR================== */
+.score-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.score-bar div {
+  height: 100%;
+  background: #4677c7;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.candidate-table strong {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+small {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.btn {
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #eef2ff;
+  color: #4338ca;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #c7d2fe;
+}

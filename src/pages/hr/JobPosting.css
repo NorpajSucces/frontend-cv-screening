@@ -1,12 +1,17 @@
-.job-posting-layout {
+.job-posting {
   display: flex;
-  height: 100vh;
-  background: #f7f8fa;
+  width: 100%
+}
+
+.job-posting-container{
+  margin-left: 270px;
+  padding: 0px;
+  background: #f8fafc;
+  min-height: 100vh;
 }
 
 /* ✅ FIX UTAMA */
 .content-wrapper {
-  margin-left: 260px;
   width: calc(100% - 260px);
   height: 100vh;
   display: flex;
@@ -16,7 +21,7 @@
 /* MAIN CONTENT */
 .job-posting-main {
   flex: 1;
-  padding: 2rem;
+
   overflow-y: auto;
   display: flex;
   flex-direction: column;

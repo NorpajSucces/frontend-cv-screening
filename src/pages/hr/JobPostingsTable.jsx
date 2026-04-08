@@ -17,7 +17,7 @@ const JobPostingsTable = ({ jobs, onEdit, onDelete, onToggleStatus }) => {
         <tbody>
           {Array.isArray(jobs) ? (
             jobs.map(job => (
-              <tr key={job._id}>
+              <tr key={job.id}>
                 <td>{job.title}</td>
                 <td>{job.location}</td>
                 <td>
@@ -28,7 +28,7 @@ const JobPostingsTable = ({ jobs, onEdit, onDelete, onToggleStatus }) => {
                     <input 
                       type="checkbox" 
                       checked={job.status === 'open'} 
-                      onChange={(e) => onToggleStatus(job._id, e.target.checked ? 'open' : 'closed')}
+                      onChange={(e) => onToggleStatus(job.id, e.target.checked ? 'open' : 'closed')}
                     />
                     <span className="slider round"></span>
                   </label>

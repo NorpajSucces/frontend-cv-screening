@@ -1,3 +1,5 @@
+//sementara
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const jobSlice = createSlice({

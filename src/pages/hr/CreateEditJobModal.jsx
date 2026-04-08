@@ -5,7 +5,7 @@ const defaultJob = {
   title: '',
   aboutPosition: '',
   location: '',
-  employmentType: 'Full-time',
+  employmentType: '',
   description: '',
   requirements: '',
   status: 'open',
@@ -13,8 +13,9 @@ const defaultJob = {
 
 const employmentTypes = ['Full-time', 'Part-time', 'Internship'];
 
+
 const CreateEditJobModal = ({ job, onClose, onSave }) => {
-  const [form, setForm] = useState(job ? { ...job } : defaultJob);
+  const [form, setForm] = useState(job ? { ...job, requirements: job.requirements?.join('\n') } : defaultJob);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +30,8 @@ const CreateEditJobModal = ({ job, onClose, onSave }) => {
     e.preventDefault();
     onSave({
       ...form,
-      _id: job?._id,
+      requirements: form.requirements.split('\n').map(r => r.trim()).filter(Boolean),
+      id: job?.id,
     });
   };
 
