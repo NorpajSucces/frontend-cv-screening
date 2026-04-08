@@ -9,15 +9,12 @@ const ProtectedRoute = ({ children }) => {
     const verifyToken = () => {
       const token = localStorage.getItem('token');
       
-      // Dev-mode: Otomatis login jika token kosong (Fitur dari branch aulia)
-      if (!token && import.meta.env.DEV) {
-        localStorage.setItem('token', 'dev-token');
-        setIsAuthenticated(true);
-      } else if (token) {
+      if (token) {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
       }
+      
       setIsLoading(false);
     };
 
