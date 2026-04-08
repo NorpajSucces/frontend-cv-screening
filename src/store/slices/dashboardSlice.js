@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isRejected } from "@reduxjs/toolkit";
 
 const initialState = {
     stats: {
@@ -6,6 +6,9 @@ const initialState = {
         applicants: 10,
         accepted: 4,
         pending: 5,
+        rejected: 2,
+        failed: 1,
+        processed: 3,
     },
     categories: {
         Engineering: 45,
@@ -15,8 +18,13 @@ const initialState = {
     selectedCategory: "All",
     applicantsData: [
         { name: "Sarah Jenkins", score: 92, status: "accepted", category: "Engineering" },
-        { name: "Michael Chen", score: 78, status: "rejected", category: "Engineering" },
-        { name: "Emily Watson", score: 85, status: "accepted", category: "Engineering" },
+        { name: "Michael Chen", score: 78, status: "rejected", category: "Others" },
+        { name: "Emily Watson", score: 85, status: "accepted", category: "Design" },
+        { name: "Sarah Win", score: 52, status: "rejected", category: "Design" },
+        { name: "Sum Chen", score: 70, status: "pending", category: "Engineering" },
+        { name: "Anna Watson", score: 55, status: "pending", category: "Engineering" },
+        { name: "Daniel Lee", score: 70, status: "failed", category: "Design" },
+        { name: "Sophia Brown", score: 88, status: "processed", category: "Others" },
     ],
     activeJobs: [
         {
@@ -78,7 +86,7 @@ export const {
     updateStats,
     setCategory,
     sortByName,
-    sortByScore, 
+    sortByScore,
     setSelectedJob,
 } = dashboardSlice.actions;
 
