@@ -1,9 +1,30 @@
-/* Custom styles for a clean login page */
-body {
-  font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
-  background-color: #f8fafc;
+/* import fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-input, button, label {
+body {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 80px;
+}
+
+input,
+button,
+label {
   font-family: inherit;
 }
