@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isRejected } from "@reduxjs/toolkit";
 
 const initialState = {
     stats: {
@@ -6,6 +6,9 @@ const initialState = {
         applicants: 10,
         accepted: 4,
         pending: 5,
+        rejected: 2,
+        failed: 1,
+        processed: 3,
     },
     categories: {
         Engineering: 45,
@@ -15,15 +18,37 @@ const initialState = {
     selectedCategory: "All",
     applicantsData: [
         { name: "Sarah Jenkins", score: 92, status: "accepted", category: "Engineering" },
-        { name: "Michael Chen", score: 78, status: "rejected", category: "Engineering" },
-        { name: "Emily Watson", score: 85, status: "accepted", category: "Engineering" },
+        { name: "Michael Chen", score: 78, status: "rejected", category: "Others" },
+        { name: "Emily Watson", score: 85, status: "accepted", category: "Design" },
+        { name: "Sarah Win", score: 52, status: "rejected", category: "Design" },
+        { name: "Sum Chen", score: 70, status: "pending", category: "Engineering" },
+        { name: "Anna Watson", score: 55, status: "pending", category: "Engineering" },
+        { name: "Daniel Lee", score: 70, status: "failed", category: "Design" },
+        { name: "Sophia Brown", score: 88, status: "processed", category: "Others" },
     ],
     activeJobs: [
-        { id: 1, title: "Senior Product Designer", applicants: 12 },
-        { id: 2, title: "Fullstack Engineer", applicants: 45 },
-        { id: 3, title: "Marketing Manager", applicants: 28 },
-        { id: 4, title: "Data Scientist", applicants: 19 },
+        {
+            id: 1,
+            title: "Senior Product Designer",
+            applicants: 12,
+        },
+        {
+            id: 2,
+            title: "Fullstack Engineer",
+            applicants: 45,
+        },
+        {
+            id: 3,
+            title: "Marketing Manager",
+            applicants: 28,
+        },
+        {
+            id: 4,
+            title: "Data Scientist",
+            applicants: 19,
+        },
     ],
+
     selectedJobId: 1,
 };
 
@@ -34,11 +59,9 @@ const dashboardSlice = createSlice({
         updateStats(state, action) {
             state.stats = { ...state.stats, ...action.payload };
         },
-        // --- INI KODE YANG HILANG TADI ---
         setCategory(state, action) {
             state.selectedCategory = action.payload;
         },
-        // --------------------------------
         sortByName(state, action) {
             const order = action.payload;
             state.applicantsData.sort((a, b) =>
@@ -59,12 +82,11 @@ const dashboardSlice = createSlice({
     },
 });
 
-// Pastikan setCategory ada di baris export ini
 export const {
     updateStats,
     setCategory,
     sortByName,
-    sortByScore, 
+    sortByScore,
     setSelectedJob,
 } = dashboardSlice.actions;
 

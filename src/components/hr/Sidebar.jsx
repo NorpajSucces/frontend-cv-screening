@@ -38,7 +38,7 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <NavLink to="/hr/job-posting" className="nav-link" data-title="Job Posting">
+                            <NavLink to="/hr/job-postings" className="nav-link" data-title="Job Posting">
                                 <span className="material-symbols-rounded">work_update</span>
                                 <span className="text">Job Posting</span>
                             </NavLink>

@@ -1,6 +1,6 @@
 .dashboard {
   display: flex;
-  width: 100%
+  width: 100%;
 }
 
 .dashboard-header {
@@ -33,7 +33,7 @@
 .charts-grid {
   display: flex;
   gap: 20px;
-  width: 100%; 
+  width: 100%;
 }
 .stats-grid {
   display: grid;

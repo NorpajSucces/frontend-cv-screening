@@ -45,6 +45,7 @@ export default function CandidateTable() {
                         </th>
 
                         <th>Applied Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -68,9 +69,15 @@ export default function CandidateTable() {
                             <td>27/03/2026</td>
 
                             <td>
+                                <span className={`status-${c.status}`}>
+                                    {c.status}
+                                </span>
+                            </td>
+
+                            <td>
                                 <button
                                     className="btn"
-                                    onClick={() => navigate(`/hr/cv-summary/${i}`)}
+                                    onClick={() => navigate(`/hr/cv-summary/sum`)}
                                 >
                                     View CV Summary
                                 </button>

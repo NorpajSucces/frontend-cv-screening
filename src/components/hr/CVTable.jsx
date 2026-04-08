@@ -31,7 +31,7 @@ export default function CVTable() {
                             CV Score
                         </th>
 
-                        <th>Status</th>
+                        <th>AI - Status</th>
                     </tr>
                 </thead>
 

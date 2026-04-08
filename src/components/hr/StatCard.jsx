@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { updateStats } from "../../store/slices/dashboardSlice";
 import "./StatCard.css";
 
-export default function StatCard({ title, value}) {
+export default function StatCard({ title, value }) {
     const dispatch = useDispatch();
 
     return (

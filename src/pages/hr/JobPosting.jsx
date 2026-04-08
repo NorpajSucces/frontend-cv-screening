@@ -4,6 +4,7 @@ import JobPostingsTable from './JobPostingsTable';
 import CreateEditJobModal from './CreateEditJobModal';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import Sidebar from '../../components/hr/Sidebar';
+
 import {
   fetchJobs,
   toggleJobStatus,
@@ -11,13 +12,12 @@ import {
   updateJob,
   deleteJob
 } from '../../store/slices/hrJobSlice';
+
 import './JobPosting.css';
 
 const JobPosting = () => {
   const dispatch = useDispatch();
   const { jobs, loading } = useSelector((state) => state.hrJob);
-  // Ambil status sidebar dari Redux
-  const { collapsed } = useSelector((state) => state.sidebar);
 
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -47,16 +47,23 @@ const JobPosting = () => {
     dispatch(toggleJobStatus({ jobId, status }));
   };
 
-  const handleSaveJob = async (jobData) => {
+  const handleSaveJob = async (job) => {
     try {
       if (selectedJob) {
-        await dispatch(updateJob({ jobId: selectedJob._id || selectedJob.id, jobData })).unwrap();
+        await dispatch(
+          updateJob({
+            jobId: selectedJob._id || selectedJob.id,
+            jobData: job
+          })
+        ).unwrap();
       } else {
-        await dispatch(createJob(jobData)).unwrap();
+        await dispatch(createJob(job)).unwrap();
       }
+
       dispatch(fetchJobs());
       setShowCreateModal(false);
       setShowEditModal(false);
+      setSelectedJob(null);
     } catch (error) {
       console.error('Error saving job:', error);
     }
@@ -65,36 +72,76 @@ const JobPosting = () => {
   const handleConfirmDelete = async () => {
     try {
       await dispatch(deleteJob(selectedJob._id || selectedJob.id)).unwrap();
+      dispatch(fetchJobs());
       setShowDeleteModal(false);
+      setSelectedJob(null);
     } catch (error) {
       console.error('Error deleting job:', error);
     }
   };
 
-  const safeJobs = Array.isArray(jobs) ? jobs : (jobs?.data || []);
+  // ✅ FIX: pastikan jobs selalu array
+  const safeJobs = Array.isArray(jobs)
+    ? jobs
+    : Array.isArray(jobs?.data)
+      ? jobs.data
+      : [];
 
-  if (loading) return <div className="p-10 text-center font-bold text-primary">Loading jobs...</div>;
+  if (loading) {
+    return <div>Loading jobs...</div>;
+  }
 
   return (
-    <div className="job-posting-layout">
+    <div className="job-posting">
       <Sidebar />
-      {/* Tambahkan class dinamis collapsed di sini */}
-      <div className={`content-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        <div className="job-posting-main">
-          <div className="job-posting-header">
-            <div className="header-text">
-              <h2>Job Postings</h2>
-              <p>Manage your talent pipelines.</p>
-            </div>
-            <button className="create-job-btn" onClick={handleCreate}>+ Create New Job</button>
-          </div>
-          <JobPostingsTable jobs={safeJobs} onEdit={handleEdit} onDelete={handleDelete} onToggleStatus={handleToggleStatus} />
-        </div>
-      </div>
+      <main className="main-content">
+          <div className="job-posting-main">
+            <div className="job-posting-header">
+              <div>
+                <h2>Job Postings</h2>
+                <p>
+                  Manage your active talent pipelines and AI-curated roles with
+                  surgical precision.
+                </p>
+              </div>
 
-      {showCreateModal && <CreateEditJobModal onClose={() => setShowCreateModal(false)} onSave={handleSaveJob} />}
-      {showEditModal && <CreateEditJobModal job={selectedJob} onClose={() => setShowEditModal(false)} onSave={handleSaveJob} />}
-      {showDeleteModal && <DeleteConfirmationModal job={selectedJob} onClose={() => setShowDeleteModal(false)} onConfirm={handleConfirmDelete} />}
+              <button className="create-job-btn" onClick={handleCreate}>
+                + Create New Job
+              </button>
+            </div>
+
+            <JobPostingsTable
+              jobs={safeJobs}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onToggleStatus={handleToggleStatus}
+            />
+          </div>
+
+        {showCreateModal && (
+          <CreateEditJobModal
+            onClose={() => setShowCreateModal(false)}
+            onSave={handleSaveJob}
+          />
+        )}
+
+        {showEditModal && (
+          <CreateEditJobModal
+            job={selectedJob}
+            onClose={() => setShowEditModal(false)}
+            onSave={handleSaveJob}
+          />
+        )}
+
+        {showDeleteModal && (
+          <DeleteConfirmationModal
+            job={selectedJob}
+            onClose={() => setShowDeleteModal(false)}
+            onConfirm={handleConfirmDelete}
+          />
+        )}
+      </main>
+
     </div>
   );
 };

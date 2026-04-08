@@ -7,35 +7,35 @@ import { useSelector } from "react-redux";
 import "./Dashboard.css"
 
 export default function Dashboard() {
-    const { stats } = useSelector((state) => state.dashboard);
+  const { stats } = useSelector((state) => state.dashboard);
 
-    return (
-        <div className="dashboard">
-            <Sidebar />
+  return (
+    <div className="dashboard">
+      <Sidebar />
 
-            <main className="main-content">
-                <div className="dashboard-header">
-                    <h1>HR Admin Portal</h1>
-                    <h2>Manage your applicants and track job opening</h2>
-                </div>
-                <hr className="divider" />
-                <div className="stats-grid">
-                    <StatCard title="Vacancies" value={stats.vacancies} field="vacancies" icon="play_for_work" />
-                    <StatCard title="Applicants" value={stats.applicants} field="applicants" icon="analytics" />
-                    <StatCard title="Accepted" value={stats.accepted} field="accepted" icon="add_task" />
-                    <StatCard title="Rejected" value={stats.accepted} field="accepted" icon="add_task" />
-                    <StatCard title="Pending" value={stats.pending} field="pending" icon="schedule" />
-                </div>
-
-                <div className="charts-grid">
-                    <PieChart />
-                    <CustomBarChart />
-                </div>
-
-                <div className="table-section">
-                    <CVTable />
-                </div>
-            </main>
+      <main className="main-content">
+        <div className="dashboard-header">
+          <h1>HR Admin Portal</h1>
+          <h2>Manage your applicants and track job opening</h2>
         </div>
-    );
+        <hr className="divider" />
+        <div className="stats-grid">
+          <StatCard title="Vacancies" value={stats.vacancies} field="vacancies" icon="play_for_work" />
+          <StatCard title="Applicants" value={stats.applicants} field="applicants" icon="analytics" />
+          <StatCard title="Accepted" value={stats.accepted} field="accepted" icon="add_task" />
+          <StatCard title="Rejected" value={stats.accepted} field="accepted" icon="add_task" />
+          <StatCard title="Pending" value={stats.pending} field="pending" icon="schedule" />
+        </div>
+
+        <div className="charts-grid">
+          <PieChart />
+          <CustomBarChart />
+        </div>
+
+        <div className="table-section">
+          <CVTable />
+        </div>
+      </main>
+    </div>
+  );
 }

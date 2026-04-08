@@ -1,185 +1,158 @@
-/* src/pages/hr/Account.css */
-
 .account-page {
   display: flex;
-  min-height: 100vh;
-  background: #f8fafc;
+  background: #f5f7fa;
 }
 
-/* Bagian Content Utama */
+/* CENTER CONTENT */
 .account-content {
   flex: 1;
-  padding: 40px 50px;
-  margin-left: 270px; /* Menyesuaikan lebar sidebar */
-  width: calc(100% - 270px);
-  color: #1e293b;
+  display: flex;
+  justify-content: center;
+  padding: 28px 20px;
 }
 
-/* Heading Area */
+.account-wrapper {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* HEADER */
 .account-heading {
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 
 .account-heading h1 {
   font-size: 2rem;
   font-weight: 800;
-  margin: 0 0 6px 0;
-  color: #0f172a;
-  letter-spacing: -0.6px;
+  color: #4b6dbb;
 }
 
 .account-heading p {
-  margin: 0;
   color: #64748b;
-  font-size: 0.95rem;
 }
 
-/* Card Pengaturan */
-.settings-card {
-  background: #ffffff;
+/* USER INFO FULL */
+.user-info {
+  background: #fff;
   border-radius: 12px;
-  padding: 32px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
   border: 1px solid #e2e8f0;
-  max-width: 700px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
 }
 
-.settings-card h2 {
-  margin: 0 0 8px;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1e293b;
+.user-info.full-width {
+  width: 100%;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4b6dbb, #4338ca);
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  color: white;
+  font-size: 1.4rem;
 }
 
-.settings-card > p {
-  color: #64748b;
-  font-size: 0.92rem;
-  margin-bottom: 24px;
+.user-details h3 {
+  margin: 0;
 }
 
-/* Form Fields */
-.settings-field {
-  margin-bottom: 20px;
-}
-
-.settings-field label {
-  display: block;
-  font-size: 0.85rem;
-  color: #475569;
-  margin-bottom: 8px;
+.user-role {
+  color: #4b6dbb;
   font-weight: 600;
+}
+
+/* GRID */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* CARD */
+.settings-card {
+  background: #fff;
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.settings-header {
+  margin: 0;
+  font-size: 1.30rem;
+  font-weight: 600;
+  color: #4b6dbb;
+}
+
+/* FORM */
+.settings-row {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .settings-field input {
   width: 100%;
-  border: 1px solid #cbd5e1;
+  padding: 10px;
   border-radius: 8px;
-  padding: 12px 14px;
-  background: #f8fafc;
-  font-size: 0.95rem;
-  transition: all 0.2s;
+  border: 1px solid #cbd5e1;
 }
 
-.settings-field input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* Button */
+/* BUTTON */
 .settings-button {
-  margin-top: 10px;
+  margin-top: 16px;
   background: #4338ca;
   color: white;
+  padding: 10px;
   border: none;
-  padding: 12px 24px;
   border-radius: 8px;
-  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-.settings-button:hover {
-  background: #3730a3;
+/* TIPS */
+.security-tips-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  height: fit-content;
 }
 
-.settings-note {
-  margin-top: 20px;
-  font-size: 0.82rem;
-  color: #64748b;
-  padding: 12px;
-  background: #f0f4ff;
-  border-left: 3px solid #4338ca;
-  border-radius: 4px;
+.tips-list {
+  list-style: disc;
+  padding: 30px 20px 20px 40px;
+
 }
 
-/* Icon */
-.security-icon-svg {
-  width: 20px;
-  height: 20px;
+.tips-list li {
+  margin-bottom: 8px;
 }
 
-/* Modal Styles */
+.tips-header h3 {
+  margin: 0;
+  font-size: 1.50rem;
+  font-weight: 600;
+  color: #4b6dbb;
+}
+/* MODAL */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.5);
+  background: rgba(0,0,0,0.4);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
 }
 
 .modal-content {
-  background: #fff;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
-  overflow: hidden;
-}
-
-.modal-header {
-  background: #4338ca;
-  padding: 24px;
-  display: flex;
-  justify-content: center;
-}
-
-.modal-icon {
-  font-size: 32px;
-  color: #fff;
-}
-
-.modal-body {
-  padding: 24px;
-  text-align: center;
-}
-
-.modal-footer {
-  padding: 16px;
-  background: #f8fafc;
-  display: flex;
-  justify-content: center;
-}
-
-.modal-button {
-  background: #4338ca;
-  color: #fff;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .account-content {
-    margin-left: 0;
-    width: 100%;
-    padding: 24px;
-  }
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }

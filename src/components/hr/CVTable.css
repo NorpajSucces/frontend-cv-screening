@@ -2,7 +2,6 @@
   background: #fff;
   border-radius: 16px;
   padding: 20px;
-  margin-top: 20px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -38,6 +37,15 @@
 .cv-table th:hover {
   background: #eef2ff;
   color: #4677c7;
+}
+
+.cv-table th:nth-child(1) {
+  width: 35%;
+  text-align: center;
+}
+.cv-table td:nth-child(1) {
+  width: 35%;
+  text-align: left;
 }
 
 .status-accepted {

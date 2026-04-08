@@ -18,7 +18,7 @@ export default function PieChart() {
         value: val,
     }));
 
-    const COLORS = ["#3b82f6", "#22c55e", "#f59e0b", "#ef4444"];
+    const COLORS = ["#16408D", "#1C52B5", "#2264DD", "#3672E0","#729CE9","#9AB8EF",];
 
     return (
         <div className="card pie-container">
