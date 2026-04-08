@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { hrJobService } from '../../services/hrJobService';
 
+// Async Thunks
 export const fetchJobs = createAsyncThunk(
   'hrJob/fetchJobs',
   async (_, { rejectWithValue }) => {
@@ -53,7 +54,7 @@ export const deleteJob = createAsyncThunk(
   'hrJob/deleteJob',
   async (jobId, { rejectWithValue }) => {
     try {
-      const response = await hrJobService.deleteJob(jobId);
+      await hrJobService.deleteJob(jobId);
       return jobId;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -75,11 +76,7 @@ const hrJobSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch Jobs
-      .addCase(fetchJobs.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(fetchJobs.pending, (state) => { state.loading = true; })
       .addCase(fetchJobs.fulfilled, (state, action) => {
         state.loading = false;
         state.jobs = action.payload.data || action.payload;
@@ -88,63 +85,26 @@ const hrJobSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // Toggle Status
-      .addCase(toggleJobStatus.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(toggleJobStatus.fulfilled, (state, action) => {
-        state.loading = false;
-        const jobIndex = state.jobs.findIndex(job => job._id === action.payload._id);
-        if (jobIndex !== -1) {
-          state.jobs[jobIndex] = { ...state.jobs[jobIndex], ...action.payload };
-        }
-      })
-      .addCase(toggleJobStatus.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      // Create Job
-      .addCase(createJob.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(createJob.fulfilled, (state, action) => {
-        state.loading = false;
-        state.jobs.push(action.payload);
-      })
-      .addCase(createJob.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      // Update Job
-      .addCase(updateJob.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(updateJob.fulfilled, (state, action) => {
-        state.loading = false;
-        const jobIndex = state.jobs.findIndex(job => job._id === action.payload._id);
-        if (jobIndex !== -1) {
-          state.jobs[jobIndex] = { ...state.jobs[jobIndex], ...action.payload };
-        }
-      })
-      .addCase(updateJob.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      // Delete Job
-      .addCase(deleteJob.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(deleteJob.fulfilled, (state, action) => {
-        state.loading = false;
-        state.jobs = state.jobs.filter(job => job._id !== action.payload);
+        state.jobs = state.jobs.filter(job => (job._id || job.id) !== action.payload);
       })
-      .addCase(deleteJob.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      // Update status job di Redux store saat toggle berhasil — tanpa perlu refetch
+      .addCase(toggleJobStatus.fulfilled, (state, action) => {
+        const updated = action.payload?.data || action.payload;
+        if (!updated?._id) return;
+        const index = state.jobs.findIndex(j => j._id === updated._id);
+        if (index !== -1) {
+          state.jobs[index].status = updated.status;
+        }
+      })
+      // Update data job di Redux store saat edit berhasil
+      .addCase(updateJob.fulfilled, (state, action) => {
+        const updated = action.payload?.data || action.payload;
+        if (!updated?._id) return;
+        const index = state.jobs.findIndex(j => j._id === updated._id);
+        if (index !== -1) {
+          state.jobs[index] = updated;
+        }
       });
   },
 });

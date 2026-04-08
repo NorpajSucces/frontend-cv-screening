@@ -54,7 +54,7 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <NavLink to="/hr/logout" className="nav-link" data-title="Log out">
+                            <NavLink to="/" className="nav-link" data-title="Log out">
                                 <span className="material-symbols-rounded">logout</span>
                                 <span className="text">Log out</span>
                             </NavLink>
