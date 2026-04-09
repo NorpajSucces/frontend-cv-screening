@@ -1,15 +1,38 @@
 import { Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const ProtectedRoute = ({ children }) => {
-  let token = localStorage.getItem('token');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Dev-mode convenience: auto-set token if missing so you can test pages without backend login
-  if (!token) {
-    token = 'dev-token';
-    localStorage.setItem('token', token);
+  useEffect(() => {
+    const verifyToken = () => {
+      const token = localStorage.getItem('token');
+      
+      // Dev-mode: Otomatis login jika token kosong (Fitur dari branch aulia)
+      if (!token && import.meta.env.DEV) {
+        localStorage.setItem('token', 'dev-token');
+        setIsAuthenticated(true);
+      } else if (token) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+      setIsLoading(false);
+    };
+
+    verifyToken();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-slate-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
   }
 
-  return token ? children : <Navigate to="/hr/login" replace />;
+  return isAuthenticated ? children : <Navigate to="/hr/login" replace />;
 };
 
 export default ProtectedRoute;
