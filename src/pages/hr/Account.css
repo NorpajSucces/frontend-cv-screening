@@ -109,6 +109,28 @@
   border: 1px solid #cbd5e1;
 }
 
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.input-wrapper span {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+
+.input-wrapper span:hover {
+  color: #000;
+}
+
 /* BUTTON */
 .settings-button {
   margin-top: 20px;
