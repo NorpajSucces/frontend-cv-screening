@@ -88,7 +88,6 @@ const JobPosting = () => {
       : [];
 
 
-
   return (
     <div className="job-posting">
       <Sidebar />

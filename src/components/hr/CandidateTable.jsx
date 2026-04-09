@@ -112,7 +112,7 @@ export default function CandidateTable() {
                     disabled={currentPage === 1}
                     onClick={() => setCurrentPage(currentPage - 1)}
                 >
-                    Prev
+                    {'<'}
                 </button>
 
                 {[...Array(totalPages)].map((_, i) => (
@@ -129,7 +129,7 @@ export default function CandidateTable() {
                     disabled={currentPage === totalPages}
                     onClick={() => setCurrentPage(currentPage + 1)}
                 >
-                    Next
+                    {'>'}
                 </button>
             </div>
         </div>

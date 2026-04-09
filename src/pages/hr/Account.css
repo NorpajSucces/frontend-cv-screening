@@ -8,7 +8,7 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  padding: 28px 20px;
+  padding: 0px 0px;
 }
 
 .account-wrapper {
@@ -22,7 +22,7 @@
 }
 
 .account-heading h1 {
-  font-size: 2rem;
+  font-size: 28px;
   font-weight: 800;
   color: #4b6dbb;
 }
@@ -85,17 +85,21 @@
 }
 
 .settings-header {
-  margin: 0;
-  font-size: 1.30rem;
+  margin-bottom:20px;
+  font-size: 25px;
   font-weight: 600;
   color: #4b6dbb;
 }
 
+.settings-subheader {
+  margin-bottom: 20px;
+  color: #64748b;
+}
 /* FORM */
 .settings-row {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .settings-field input {
@@ -105,9 +109,31 @@
   border: 1px solid #cbd5e1;
 }
 
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.input-wrapper span {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+
+.input-wrapper span:hover {
+  color: #000;
+}
+
 /* BUTTON */
 .settings-button {
-  margin-top: 16px;
+  margin-top: 20px;
   background: #4338ca;
   color: white;
   padding: 10px;
@@ -116,43 +142,117 @@
   cursor: pointer;
 }
 
+.settings-note {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 14px;
+}
 /* TIPS */
 .security-tips-card {
   background: #fff;
-  padding: 24px;
+  padding: 28px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: px solid #e2e8f0;
   height: fit-content;
 }
 
 .tips-list {
   list-style: disc;
-  padding: 30px 20px 20px 40px;
+  padding: 20px 20px 20px 30px;
 
 }
 
 .tips-list li {
   margin-bottom: 8px;
+  text-align: justify;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .tips-header h3 {
-  margin: 0;
-  font-size: 1.50rem;
+  margin-left: 25px;
+  font-size: 25px;
   font-weight: 600;
   color: #4b6dbb;
 }
 /* MODAL */
+/* OVERLAY */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* efek glass */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
+
+  animation: fadeIn 0.3s ease;
 }
 
+/* CONTENT */
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: #ffffff;
+  padding: 25px 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  transform: scale(0.9);
+  animation: popUp 0.3s ease forwards;
+}
+
+/* TITLE */
+.modal-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* MESSAGE */
+.modal-message {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.modal-btn {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-btn:hover {
+  background: #4338ca;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

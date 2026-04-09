@@ -41,18 +41,15 @@
   background: #e6e8fd;
   color: #3b38f5;
 }
-.employment-type.contract {
+.employment-type.internship {
   background: #fbeee6;
   color: #f5a623;
 }
-.employment-type.remote {
-  background: #e6f7f1;
-  color: #1bc47d;
+.employment-type.part-time {
+  background: #e8d6e9;
+  color: #f523eb;
 }
-.employment-type.hybrid {
-  background: #f3e6fb;
-  color: #a623f5;
-}
+
 
 .switch {
   position: relative;
@@ -105,7 +102,7 @@ input:checked + .slider:before {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 16px;
   margin-right: 8px;
 }
 .delete-btn {
