@@ -21,7 +21,7 @@
 .candidate-header h1 {
   font-size: 28px;
   font-weight: 600;
-  color: #4677c7;
+  color: #2563EB;
 }
 
 .candidate-header h2 {
@@ -57,7 +57,7 @@
 
 .active-jobs .header span {
   font-size: 12px;
-  color: #4677c7;
+  color: #2563EB;
   font-weight: 600;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .job-item.active {
-  border-left: 4px solid #4677c7;
+  border-left: 4px solid #2563EB;
   background: #eef2ff;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .candidate-table th:hover {
-  color: #4677c7;
+  color: #2563EB;
 }
 
 /* =COLUMN WIDTH=================== */
@@ -161,7 +161,7 @@
 
 .candidate-table th:hover {
   background: #eef2ff;
-  color: #4677c7;
+  color: #2563EB;
 }
 
 /* =SCORE BAR================== */
@@ -174,7 +174,7 @@
 
 .score-bar div {
   height: 100%;
-  background: #4677c7;
+  background: #2563EB;
   border-radius: 10px;
   margin-right: 10px;
 }
