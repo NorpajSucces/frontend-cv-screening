@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, ArrowLeft, CheckCircle2, Loader2, FileText } from 'lucide-react';
-import { JOBS } from '../../constants';
+import { Upload, ArrowLeft, CheckCircle2, Loader2, FileText, AlertCircle } from 'lucide-react';
+import axiosInstance from '../../services/axiosInstance';
+import { fetchJobById } from '../../store/slices/jobSlice';
 import { cn } from '../../utils/cn';
 
 export const ApplyForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
-  const job = JOBS.find(j => j.id === id);
+  // Ambil data job dari Redux store
+  const { selectedJob: job, loading: jobLoading } = useSelector((state) => state.job);
+
+  // Selalu fetch data job saat halaman ini dibuka untuk memastikan data selalu fresh,
+  // terlepas dari kondisi Redux store sebelumnya.
+  useEffect(() => {
+    dispatch(fetchJobById(id));
+  }, [dispatch, id]);
+
 
   const {
     register,
@@ -25,15 +37,46 @@ export const ApplyForm = () => {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setTimeout(() => {
-      navigate('/jobs');
-    }, 2500);
+    setSubmitError(null);
+
+    try {
+      // Buat FormData untuk mengirim file PDF
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone);
+      formData.append('cv', data.cv[0]); // File object dari input type="file"
+
+      // Kirim ke backend: POST /api/jobs/:id/apply
+      // Gunakan axiosInstance langsung — Content-Type akan di-set otomatis ke multipart/form-data
+      await axiosInstance.post(`/jobs/${id}/apply`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      setIsSuccess(true);
+
+      // Redirect ke halaman jobs setelah 2.5 detik
+      setTimeout(() => {
+        navigate('/jobs');
+      }, 2500);
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        'Failed to submit application. Please try again.';
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  if (!job) return <div className="pt-32 text-center text-slate-500">Job not found</div>;
+  // Tampilkan loading spinner saat data job sedang di-fetch
+  if (jobLoading || !job) {
+    return (
+      <div className="pt-32 pb-20 px-6 min-h-[60vh] flex justify-center items-center">
+        <Loader2 className="animate-spin text-primary" size={48} />
+      </div>
+    );
+  }
 
   return (
     <div className="pt-32 pb-20 px-6 max-w-2xl mx-auto">
@@ -49,33 +92,41 @@ export const ApplyForm = () => {
         <h1 className="text-3xl font-black tracking-tighter mb-2 uppercase">Apply For Position</h1>
         <div className="text-primary font-bold text-xl uppercase">{job.title}</div>
         <div className="text-slate-500 text-sm mt-1 uppercase">
-          {job.location} • {job.type}
+          {job.location} • {job.employmentType}
         </div>
       </div>
 
+      {/* Error Banner */}
+      {submitError && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-3 text-red-600">
+          <AlertCircle size={20} className="shrink-0" />
+          <p className="text-sm font-medium">{submitError}</p>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-        {/* Full Name */}
+        {/* Full Name — field name "name" sesuai dengan backend */}
         <div className="relative">
           <input
             type="text"
-            id="fullName"
-            {...register('fullName', { required: 'Full name is required' })}
+            id="name"
+            {...register('name', { required: 'Full name is required' })}
             placeholder=" "
             className={cn(
               'peer w-full px-4 py-4 rounded-2xl border bg-white focus:outline-none focus:ring-2 transition-all pt-6',
-              errors.fullName
+              errors.name
                 ? 'border-red-500 focus:ring-red-100'
                 : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
             )}
           />
           <label
-            htmlFor="fullName"
+            htmlFor="name"
             className="absolute left-4 top-2 text-xs font-bold text-slate-400 uppercase tracking-wider transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary"
           >
             Full Name
           </label>
-          {errors.fullName && (
-            <p className="text-red-500 text-xs mt-1 font-medium">{errors.fullName.message}</p>
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1 font-medium">{errors.name.message}</p>
           )}
         </div>
 
@@ -149,8 +200,10 @@ export const ApplyForm = () => {
               {...register('cv', {
                 required: 'CV is required',
                 validate: {
-                  lessThan5MB: files => !files[0] || files[0].size < 5000000 || 'Maximum file size is 5MB',
-                  isPDF: files => !files[0] || files[0].type === 'application/pdf' || 'File must be a PDF',
+                  lessThan5MB: (files) =>
+                    !files[0] || files[0].size < 5000000 || 'Maximum file size is 5MB',
+                  isPDF: (files) =>
+                    !files[0] || files[0].type === 'application/pdf' || 'File must be a PDF',
                 },
               })}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
@@ -180,7 +233,7 @@ export const ApplyForm = () => {
           {isSubmitting ? (
             <>
               <Loader2 className="animate-spin" size={24} />
-              Processing...
+              Submitting...
             </>
           ) : (
             'Submit Application'
@@ -205,8 +258,10 @@ export const ApplyForm = () => {
               <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 size={48} />
               </div>
-              <h2 className="text-2xl font-black tracking-tighter mb-2 uppercase">Success!</h2>
-              <p className="text-slate-500 mb-8">Your application has been sent. We will contact you soon.</p>
+              <h2 className="text-2xl font-black tracking-tighter mb-2 uppercase">Application Sent!</h2>
+              <p className="text-slate-500 mb-8">
+                Your application has been received. Our AI is now reviewing your CV. We will contact you soon.
+              </p>
               <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}

@@ -87,6 +87,24 @@ const hrJobSlice = createSlice({
       })
       .addCase(deleteJob.fulfilled, (state, action) => {
         state.jobs = state.jobs.filter(job => (job._id || job.id) !== action.payload);
+      })
+      // Update status job di Redux store saat toggle berhasil — tanpa perlu refetch
+      .addCase(toggleJobStatus.fulfilled, (state, action) => {
+        const updated = action.payload?.data || action.payload;
+        if (!updated?._id) return;
+        const index = state.jobs.findIndex(j => j._id === updated._id);
+        if (index !== -1) {
+          state.jobs[index].status = updated.status;
+        }
+      })
+      // Update data job di Redux store saat edit berhasil
+      .addCase(updateJob.fulfilled, (state, action) => {
+        const updated = action.payload?.data || action.payload;
+        if (!updated?._id) return;
+        const index = state.jobs.findIndex(j => j._id === updated._id);
+        if (index !== -1) {
+          state.jobs[index] = updated;
+        }
       });
   },
 });
