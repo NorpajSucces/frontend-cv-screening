@@ -11,8 +11,7 @@ export default function CandidateTable() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-
+    
     const [nameOrder, setNameOrder] = useState("asc");
     const [scoreOrder, setScoreOrder] = useState("asc");
     const [search, setSearch] = useState("");

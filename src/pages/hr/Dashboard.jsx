@@ -23,7 +23,7 @@ export default function Dashboard() {
           <StatCard title="Vacancies" value={stats.vacancies} field="vacancies" icon="play_for_work" />
           <StatCard title="Applicants" value={stats.applicants} field="applicants" icon="analytics" />
           <StatCard title="Accepted" value={stats.accepted} field="accepted" icon="add_task" />
-          <StatCard title="Rejected" value={stats.accepted} field="accepted" icon="add_task" />
+          <StatCard title="Rejected" value={stats.rejected} field="rejected" icon="close" />
           <StatCard title="Pending" value={stats.pending} field="pending" icon="schedule" />
         </div>
 
