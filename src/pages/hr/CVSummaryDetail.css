@@ -1,8 +1,12 @@
+.cv-page{
+  display: flex;
+  background: #f5f7fa;
+}
+
 .cv-container {
-  margin-left: 270px;
-  padding: 30px;
-  background: #f8fafc;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-right: 150px
 }
 
 /* CARD */

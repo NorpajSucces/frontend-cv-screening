@@ -97,7 +97,7 @@ const Login = () => {
           </form>
 
           <div className="login-footer">
-            © 2024 SmartRecruiter
+            © 2026 SmartRecruiter
           </div>
         </div>
 

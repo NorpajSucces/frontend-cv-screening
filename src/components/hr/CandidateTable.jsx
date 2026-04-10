@@ -14,15 +14,33 @@ export default function CandidateTable() {
     
     const [nameOrder, setNameOrder] = useState("asc");
     const [scoreOrder, setScoreOrder] = useState("asc");
+    const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const dataPerPage = 10;
 
-    // sementara filter 3 data saja per job
-    const filteredData = applicantsData.slice(
-        (selectedJobId - 1) * 3,
-        selectedJobId * 3
+
+    const filteredData = applicantsData.filter((c) =>
+        c.name.toLowerCase().includes(search.toLowerCase())
     );
+
+    const indexOfLast = currentPage * dataPerPage;
+    const indexOfFirst = indexOfLast - dataPerPage;
+
+    const currentData = filteredData.slice(indexOfFirst, indexOfLast);
+
+    const totalPages = Math.ceil(filteredData.length / dataPerPage);
 
     return (
         <div className="card table-container">
+            <div className="table-actions">
+                <input
+                    type="text"
+                    placeholder="Search candidate..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="search-input"
+                />
+            </div>
             <table className="candidate-table">
                 <thead>
                     <tr>
@@ -33,7 +51,7 @@ export default function CandidateTable() {
                                 dispatch(sortByName(order));
                             }}
                         >
-                            Candidate Name
+                            Candidate Name   {nameOrder === "asc" ? "▲" : "▼"}
                         </th>
 
                         <th
@@ -43,7 +61,7 @@ export default function CandidateTable() {
                                 dispatch(sortByScore(order));
                             }}
                         >
-                            CV Score
+                            CV Score {scoreOrder === "asc" ? "▲" : "▼"}
                         </th>
 
                         <th>Applied Date</th>
@@ -53,7 +71,7 @@ export default function CandidateTable() {
                 </thead>
 
                 <tbody>
-                    {filteredData.map((c, i) => (
+                    {currentData.map((c, i) => (
                         <tr key={i}>
                             <td>
                                 <strong>{c.name}</strong>
@@ -88,6 +106,31 @@ export default function CandidateTable() {
                     ))}
                 </tbody>
             </table>
+            <div className="pagination">
+                <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                >
+                    {'<'}
+                </button>
+
+                {[...Array(totalPages)].map((_, i) => (
+                    <button
+                        key={i}
+                        className={currentPage === i + 1 ? "active" : ""}
+                        onClick={() => setCurrentPage(i + 1)}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+
+                <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                >
+                    {'>'}
+                </button>
+            </div>
         </div>
     );
 }
