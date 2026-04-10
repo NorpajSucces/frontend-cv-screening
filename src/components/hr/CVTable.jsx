@@ -15,7 +15,7 @@ export default function CVTable() {
                         <th>Candidate Name</th>
                         <th>CV Score</th>
                         <th>Applied Date</th>
-                        <th>AI - Status</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
 
