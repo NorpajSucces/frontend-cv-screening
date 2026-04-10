@@ -80,16 +80,16 @@ const JobPosting = () => {
     }
   };
 
-  // ✅ FIX: pastikan jobs selalu array
+  // FIX: pastikan jobs selalu array
   const safeJobs = Array.isArray(jobs)
     ? jobs
     : Array.isArray(jobs?.data)
       ? jobs.data
       : [];
 
-  if (loading) {
-    return <div>Loading jobs...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading jobs...</div>;
+  // }
 
   return (
     <div className="job-posting">
