@@ -12,6 +12,7 @@ export default function Candidates() {
                     <h1>Candidate Management</h1>
                     <h2>Filter and review all job applications.</h2>
                 </div>
+                <hr className="divider" />
 
                 <div className="candidate-layout">
                     <ActiveJobs />

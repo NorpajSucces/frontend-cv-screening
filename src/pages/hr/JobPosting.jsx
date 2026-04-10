@@ -92,29 +92,30 @@ const JobPosting = () => {
     <div className="job-posting">
       <Sidebar />
       <main className="main-content">
-          <div className="job-posting-main">
-            <div className="job-posting-header">
-              <div>
-                <h2>Job Postings</h2>
-                <p>
-                  Manage your active talent pipelines and AI-curated roles with
-                  surgical precision.
-                </p>
-              </div>
-
-              <button className="create-job-btn" onClick={handleCreate}>
-                + Create New Job
-              </button>
+        <div className="job-posting-main">
+          <div className="job-posting-header">
+            <div>
+              <h2>Job Postings</h2>
+              <p>
+                Manage your active talent pipelines and AI-curated roles with
+                surgical precision.
+              </p>
             </div>
-
-            <JobPostingsTable
-            
-              jobs={safeJobs}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-              onToggleStatus={handleToggleStatus}
-            />
+          
+            <button className="create-job-btn" onClick={handleCreate}>
+              + Create New Job
+            </button>
           </div>
+          <hr className="divider" />
+
+          <JobPostingsTable
+
+            jobs={safeJobs}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onToggleStatus={handleToggleStatus}
+          />
+        </div>
 
         {showCreateModal && (
           <CreateEditJobModal

@@ -34,6 +34,7 @@ export default function CandidateTable() {
     return (
         <div className="card table-container">
             <div className="table-actions">
+                <h1>Candidate List</h1>
                 <input
                     type="text"
                     placeholder="Search candidate..."
@@ -43,6 +44,7 @@ export default function CandidateTable() {
                 />
             </div>
             <table className="candidate-table">
+
                 <thead>
                     <tr>
                         <th

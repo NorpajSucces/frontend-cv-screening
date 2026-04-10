@@ -11,6 +11,14 @@
   padding: 0px 0px;
 }
 
+.divider {
+  width: flex;
+  border: none;
+  height: 1px;
+  background: #cbd5e1;
+  margin: 10px 0 20px 0;
+}
+
 .account-wrapper {
   width: 100%;
   max-width: 1100px;
@@ -24,7 +32,7 @@
 .account-heading h1 {
   font-size: 28px;
   font-weight: 800;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 .account-heading p {
@@ -51,7 +59,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563EB, #4338ca);
+  background: linear-gradient(135deg, #2563eb, #4338ca);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +72,7 @@
 }
 
 .user-role {
-  color: #2563EB;
+  color: #2563eb;
   font-weight: 600;
 }
 
@@ -85,10 +93,10 @@
 }
 
 .settings-header {
-  margin-bottom:20px;
+  margin-bottom: 20px;
   font-size: 25px;
   font-weight: 600;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 .settings-subheader {
@@ -159,7 +167,6 @@
 .tips-list {
   list-style: disc;
   padding: 20px 20px 20px 30px;
-
 }
 
 .tips-list li {
@@ -174,7 +181,7 @@
   margin-left: 25px;
   font-size: 25px;
   font-weight: 600;
-  color: #2563EB;
+  color: #2563eb;
 }
 /* MODAL */
 /* OVERLAY */
@@ -200,7 +207,7 @@
   max-width: 400px;
   text-align: center;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
   transform: scale(0.9);
   animation: popUp 0.3s ease forwards;

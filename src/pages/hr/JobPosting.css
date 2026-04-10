@@ -1,13 +1,21 @@
 .job-posting {
   display: flex;
-  width: 100%
+  width: 100%;
 }
 
-.job-posting-container{
+.job-posting-container {
   margin-left: 270px;
   padding: 0px;
   background: #f8fafc;
   min-height: 100vh;
+}
+
+.divider {
+  width: flex;
+  border: none;
+  height: 1px;
+  background: #cbd5e1;
+  margin: 10px 0 20px 0;
 }
 
 /* ✅ FIX UTAMA */
@@ -40,13 +48,13 @@
   font-size: 28px;
   font-weight: 700;
   margin: 0 0 0.25rem 0;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 .job-posting-header p {
-  color: #7a7a8c;
-  font-size: 1rem;
-  margin: 0;
+  font-size: 12px;
+  font-weight: 200;
+  color: #64748b;
 }
 
 /* BUTTON */
