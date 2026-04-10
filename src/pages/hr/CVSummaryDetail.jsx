@@ -46,7 +46,7 @@ export default function CVSummaryDetail() {
           {/* HEADER */}
           <div className="cv-head">
             <h1>Candidate Info</h1>
-            <h2>Filter and review all job applications.</h2>
+            <h2>Detail about candidate.</h2>
           </div>
           <hr className="divider" />
 

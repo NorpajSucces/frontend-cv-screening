@@ -26,16 +26,18 @@
 
 /* HEADER */
 .account-heading {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .account-heading h1 {
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 700;
   color: #2563eb;
 }
 
 .account-heading p {
+  font-size: 12px;
+  font-weight: 200;
   color: #64748b;
 }
 

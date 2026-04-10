@@ -17,7 +17,7 @@ export default function Dashboard() {
       <main className="main-content">
         <div className="dashboard-header">
           <h1>HR Admin Portal</h1>
-          <h2>Manage your applicants and track job opening</h2>
+          <h2>Manage your applicants and track job opening.</h2>
         </div>
         <hr className="divider" />
         <div className="stats-grid">
