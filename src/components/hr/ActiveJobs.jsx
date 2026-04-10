@@ -18,12 +18,15 @@ export default function ActiveJobs() {
             {activeJobs.map((job) => (
                 <div
                     key={job.id}
-                    className={`job-item ${selectedJobId === job.id ? "active" : ""
-                        }`}
+                    className={`job-item ${selectedJobId === job.id ? "active" : ""}`}
                     onClick={() => dispatch(setSelectedJob(job.id))}
                 >
                     <h4>{job.title}</h4>
                     <p>{job.applicants} Applicants</p>
+
+                    <span className={`job-status ${job.status}`}>
+                        {job.status}
+                    </span>
                 </div>
             ))}
         </div>
