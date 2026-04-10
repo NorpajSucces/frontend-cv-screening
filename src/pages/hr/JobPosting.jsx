@@ -87,9 +87,6 @@ const JobPosting = () => {
       ? jobs.data
       : [];
 
-  // if (loading) {
-  //   return <div>Loading jobs...</div>;
-  // }
 
   return (
     <div className="job-posting">
@@ -111,6 +108,7 @@ const JobPosting = () => {
             </div>
 
             <JobPostingsTable
+            
               jobs={safeJobs}
               onEdit={handleEdit}
               onDelete={handleDelete}

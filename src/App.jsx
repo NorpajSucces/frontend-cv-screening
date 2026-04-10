@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import { Navbar } from './components/common/Navbar';
@@ -20,8 +21,12 @@ import Account from './pages/hr/Account';
 function App() {
   const location = useLocation();
 
+  // 2. Tambahkan logika Scroll To Top di sini
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]); // Efek ini jalan setiap kali URL (pathname) berubah
+
   // Logika untuk mengecek apakah kita berada di halaman HR atau Login HR
-  // Jika path dimulai dengan '/hr', maka Navbar & Footer Landing Page disembunyikan
   const isHrPage = location.pathname.startsWith('/hr');
 
   return (
@@ -42,11 +47,10 @@ function App() {
 
           {/* HR Protected Routes */}
           <Route path="/hr/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          
-          {/* SAYA RAPIKAN: Cukup satu rute untuk Job Posting agar tidak bentrok */}
+
           <Route path="/hr/job-postings" element={<ProtectedRoute><JobPosting /></ProtectedRoute>} />
           <Route path="/hr/job-posting" element={<ProtectedRoute><JobPosting /></ProtectedRoute>} />
-          
+
           <Route path="/hr/candidates" element={<ProtectedRoute><Candidate /></ProtectedRoute>} />
           <Route path="/hr/candidates/:id" element={<ProtectedRoute><CVSummaryDetail /></ProtectedRoute>} />
           <Route path="/hr/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />

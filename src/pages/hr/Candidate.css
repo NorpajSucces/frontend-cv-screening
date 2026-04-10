@@ -21,7 +21,7 @@
 .candidate-header h1 {
   font-size: 28px;
   font-weight: 600;
-  color: #4677c7;
+  color: #2563EB;
 }
 
 .candidate-header h2 {
@@ -35,7 +35,7 @@
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 20px;
-  align-items: stretch;
+  align-items: start;
 }
 
 /* CARD GLOBAL */
@@ -47,7 +47,7 @@
 
 /* ACTIVE JOBS */
 .active-jobs {
-  height: 100%;
+  height: auto;
 }
 .active-jobs .header {
   display: flex;
@@ -57,7 +57,7 @@
 
 .active-jobs .header span {
   font-size: 12px;
-  color: #4677c7;
+  color: #2563EB;
   font-weight: 600;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .job-item.active {
-  border-left: 4px solid #4677c7;
+  border-left: 4px solid #2563EB;
   background: #eef2ff;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .candidate-table th:hover {
-  color: #4677c7;
+  color: #2563EB;
 }
 
 /* =COLUMN WIDTH=================== */
@@ -161,7 +161,7 @@
 
 .candidate-table th:hover {
   background: #eef2ff;
-  color: #4677c7;
+  color: #2563EB;
 }
 
 /* =SCORE BAR================== */
@@ -174,7 +174,7 @@
 
 .score-bar div {
   height: 100%;
-  background: #4677c7;
+  background: #2563EB;
   border-radius: 10px;
   margin-right: 10px;
 }
@@ -233,7 +233,7 @@ small {
 
 .status-pending {
   background: #fef9c3;
-  color: #FCB823;
+  color: #fcb823;
   display: inline-block;
   padding: 4px 10px;
   border-radius: 10px;
@@ -247,4 +247,44 @@ small {
   padding: 4px 10px;
   border-radius: 10px;
   font-size: 12px;
+}
+
+.table-actions {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  width: 250px;
+}
+
+/* PAGINATION */
+.pagination {
+  margin-top: 15px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background: #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #4338ca;
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

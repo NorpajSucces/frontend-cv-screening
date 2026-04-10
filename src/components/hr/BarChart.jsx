@@ -52,7 +52,7 @@ export default function CustomBarChart() {
 
     return (
         <div className="card bar-container">
-            <h3>Candidate Status ({selectedCategory})</h3>
+            <h3>Applicants Status ({selectedCategory})</h3>
 
             {/* CHART */}
             <div style={{ width: "100%", height: "100%" }}>

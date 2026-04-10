@@ -22,7 +22,7 @@ export default function PieChart() {
 
     return (
         <div className="card pie-container">
-            <h3>Distribution</h3>
+            <h3>Job Distribution</h3>
 
             <div style={{ width: "100%", height: 250 }}>
                 <ResponsiveContainer>
