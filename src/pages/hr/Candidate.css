@@ -29,7 +29,7 @@
 .candidate-header h1 {
   font-size: 28px;
   font-weight: 600;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 .candidate-header h2 {
@@ -65,7 +65,7 @@
 
 .active-jobs .header span {
   font-size: 12px;
-  color: #2563EB;
+  color: #2563eb;
   font-weight: 600;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .job-item.active {
-  border-left: 4px solid #2563EB;
+  border-left: 4px solid #2563eb;
   background: #eef2ff;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .candidate-table th:hover {
-  color: #2563EB;
+  color: #2563eb;
 }
 
 /* =COLUMN WIDTH=================== */
@@ -168,7 +168,7 @@
 
 .candidate-table th:hover {
   background: #eef2ff;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 /* =SCORE BAR================== */
@@ -181,7 +181,7 @@
 
 .score-bar div {
   height: 100%;
-  background: #2563EB;
+  background: #2563eb;
   border-radius: 10px;
   margin-right: 10px;
 }
@@ -259,13 +259,8 @@ small {
 .table-actions {
   margin-bottom: 15px;
   display: flex;
-  justify-content: flex-end;
-}
-
-.table-actions h1{
-  margin-right: 348px;
-  color: #64748b;
-
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search-input {
