@@ -1,55 +1,32 @@
 import { useSelector, useDispatch } from "react-redux";
 import { sortByName, sortByScore } from "../../store/slices/dashboardSlice";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "../../pages/hr/Candidate.css"
 
 export default function CandidateTable() {
-    const { applicantsData, selectedJobId } = useSelector(
-        (state) => state.dashboard
-    );
+    // const { applicantsData, selectedJobId } = useSelector(
+    //     (state) => state.dashboard
+    // );
+
+    const { candidates } = useSelector((state) => state.candidate);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [nameOrder, setNameOrder] = useState("asc");
     const [scoreOrder, setScoreOrder] = useState("asc");
-    const [search, setSearch] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const dataPerPage = 10;
 
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [selectedJobId, search]);
+    const navigate = useNavigate();
 
-
-    const filteredData = applicantsData
-        .filter((c) => c.jobId === selectedJobId)
-        .filter((c) =>
-            c.name.toLowerCase().includes(search.toLowerCase())
-        );
-
-    const indexOfLast = currentPage * dataPerPage;
-    const indexOfFirst = indexOfLast - dataPerPage;
-
-    const currentData = filteredData.slice(indexOfFirst, indexOfLast);
-
-    const totalPages = Math.ceil(filteredData.length / dataPerPage);
+    // sementara filter 3 data saja per job
+    // const filteredData = applicantsData.slice(
+    //     (selectedJobId - 1) * 3,
+    //     selectedJobId * 3
+    // );
 
     return (
         <div className="card table-container">
-            <div className="table-actions">
-                <h1>Candidate List</h1>
-                <input
-                    type="text"
-                    placeholder="Search candidate..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="search-input"
-                />
-            </div>
             <table className="candidate-table">
-
                 <thead>
                     <tr>
                         <th
@@ -59,7 +36,7 @@ export default function CandidateTable() {
                                 dispatch(sortByName(order));
                             }}
                         >
-                            Candidate Name   {nameOrder === "asc" ? "▲" : "▼"}
+                            Candidate Name
                         </th>
 
                         <th
@@ -69,7 +46,7 @@ export default function CandidateTable() {
                                 dispatch(sortByScore(order));
                             }}
                         >
-                            CV Score {scoreOrder === "asc" ? "▲" : "▼"}
+                            CV Score
                         </th>
 
                         <th>Applied Date</th>
@@ -79,7 +56,7 @@ export default function CandidateTable() {
                 </thead>
 
                 <tbody>
-                    {currentData.map((c, i) => (
+                    {candidates.map((c, i) => (
                         <tr key={i}>
                             <td>
                                 <strong>{c.name}</strong>
@@ -89,23 +66,23 @@ export default function CandidateTable() {
 
                             <td>
                                 <div className="score-bar">
-                                    <div style={{ width: `${c.score}%` }}></div>
+                                    <div style={{ width: `${c.aiScore}%` }}></div>
                                 </div>
-                                <small>{c.score}/100</small>
+                                <small>{c.aiScore}/100</small>
                             </td>
 
-                            <td>27/03/2026</td>
+                            <td>{new Date(c.appliedAt).toLocaleDateString('en-GB')}</td>
 
                             <td>
-                                <span className={`status-${c.status}`}>
-                                    {c.status}
+                                <span className={`status-${c.status === "advanced" ? "accepted" : c.status}`}>
+                                    {c.status === "advanced" ? "accepted" : c.status}
                                 </span>
                             </td>
 
                             <td>
                                 <button
                                     className="btn"
-                                    onClick={() => navigate(`/hr/cv-summary/sum`)}
+                                    onClick={() => navigate(`/hr/candidates/${c._id}`)}
                                 >
                                     View CV Summary
                                 </button>
@@ -114,31 +91,6 @@ export default function CandidateTable() {
                     ))}
                 </tbody>
             </table>
-            <div className="pagination">
-                <button
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                >
-                    {'<'}
-                </button>
-
-                {[...Array(totalPages)].map((_, i) => (
-                    <button
-                        key={i}
-                        className={currentPage === i + 1 ? "active" : ""}
-                        onClick={() => setCurrentPage(i + 1)}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
-
-                <button
-                    disabled={currentPage === totalPages}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                >
-                    {'>'}
-                </button>
-            </div>
         </div>
     );
 }

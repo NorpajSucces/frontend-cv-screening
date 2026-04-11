@@ -12,35 +12,35 @@ import {
 import "./BarChart.css";
 
 export default function CustomBarChart() {
-    const { applicantsData, selectedCategory } = useSelector(
+    const { barData, selectedCategory } = useSelector(
         (state) => state.dashboard
     );
 
     // 🎯 Filter berdasarkan PieChart
-    const filtered = applicantsData.filter(
-        (c) =>
-            selectedCategory === "All" ||
-            c.category === selectedCategory
-    );
+    // const filtered = applicantsData.filter(
+    //     (c) =>
+    //         selectedCategory === "All" ||
+    //         c.category === selectedCategory
+    // );
 
     // 🎯 Hitung jumlah status
-    const statusCount = {
-        accepted: 0,
-        rejected: 0,
-        pending: 0,
-    };
+    // const statusCount = {
+    //     accepted: 0,
+    //     rejected: 0,
+    //     pending: 0,
+    // };
 
-    filtered.forEach((c) => {
-        if (statusCount[c.status] !== undefined) {
-            statusCount[c.status]++;
-        }
-    });
+    // filtered.forEach((c) => {
+    //     if (statusCount[c.status] !== undefined) {
+    //         statusCount[c.status]++;
+    //     }
+    // });
 
     // 🎯 Data untuk chart + legend
     const data = [
-        { name: "Accepted", value: statusCount.accepted },
-        { name: "Rejected", value: statusCount.rejected },
-        { name: "Pending", value: statusCount.pending },
+        { name: "Accepted", value: barData.accepted ?? 0 },
+        { name: "Rejected", value: barData.rejected ?? 0},
+        { name: "Pending", value: barData.pending ?? 0},
     ];
 
     // 🎨 Warna konsisten
@@ -52,7 +52,7 @@ export default function CustomBarChart() {
 
     return (
         <div className="card bar-container">
-            <h3>Applicants Status ({selectedCategory})</h3>
+            <h3>Candidate Status ({selectedCategory})</h3>
 
             {/* CHART */}
             <div style={{ width: "100%", height: "100%" }}>
@@ -60,7 +60,7 @@ export default function CustomBarChart() {
                     <BarChart data={data}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
-                        <YAxis />
+                        <YAxis allowDecimals={false} />
                         <Tooltip />
 
                         <Bar dataKey="value" radius={[6, 6, 0, 0]}>
