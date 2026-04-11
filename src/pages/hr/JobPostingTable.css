@@ -1,7 +1,7 @@
 .job-table-container {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   padding: 24px;
 }
 
@@ -11,7 +11,8 @@
   margin-bottom: 16px;
 }
 
-.job-table th, .job-table td {
+.job-table th,
+.job-table td {
   padding: 16px 12px;
   text-align: left;
 }
@@ -36,10 +37,22 @@
   font-weight: 600;
   margin-right: 4px;
 }
-.employment-type.full-time { background: #e6e8fd; color: #3b38f5; }
-.employment-type.contract { background: #fbeee6; color: #f5a623; }
-.employment-type.remote { background: #e6f7f1; color: #1bc47d; }
-.employment-type.hybrid { background: #f3e6fb; color: #a623f5; }
+.employment-type.full-time {
+  background: #e6e8fd;
+  color: #3b38f5;
+}
+.employment-type.contract {
+  background: #fbeee6;
+  color: #f5a623;
+}
+.employment-type.remote {
+  background: #e6f7f1;
+  color: #1bc47d;
+}
+.employment-type.hybrid {
+  background: #f3e6fb;
+  color: #a623f5;
+}
 
 .switch {
   position: relative;
@@ -48,14 +61,19 @@
   height: 22px;
   margin-right: 8px;
 }
-.switch input { display: none; }
+.switch input {
+  display: none;
+}
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
   border-radius: 22px;
-  transition: .4s;
+  transition: 0.4s;
 }
 .slider:before {
   position: absolute;
@@ -66,7 +84,7 @@
   bottom: 3px;
   background-color: white;
   border-radius: 50%;
-  transition: .4s;
+  transition: 0.4s;
 }
 input:checked + .slider {
   background-color: #3b38f5;
@@ -74,16 +92,25 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(16px);
 }
-.status-open { color: #1bc47d; font-weight: 600; }
-.status-closed { color: #f44336; font-weight: 600; }
-.edit-btn, .delete-btn {
+.status-open {
+  color: #1bc47d;
+  font-weight: 600;
+}
+.status-closed {
+  color: #f44336;
+  font-weight: 600;
+}
+.edit-btn,
+.delete-btn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
   margin-right: 8px;
 }
-.delete-btn { color: #f44336; }
+.delete-btn {
+  color: #f44336;
+}
 
 .pagination {
   display: flex;
