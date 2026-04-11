@@ -3,6 +3,7 @@ import StatCard from "../../components/hr/StatCard";
 import PieChart from "../../components/hr/PieChart";
 import CVTable from "../../components/hr/CVTable";
 import CustomBarChart from "../../components/hr/BarChart";
+import StatusInfo from "../../components/hr/StatusInfo";
 import { useSelector } from "react-redux";
 import "./Dashboard.css"
 
@@ -16,7 +17,7 @@ export default function Dashboard() {
       <main className="main-content">
         <div className="dashboard-header">
           <h1>HR Admin Portal</h1>
-          <h2>Manage your applicants and track job opening</h2>
+          <h2>Manage your applicants and track job opening.</h2>
         </div>
         <hr className="divider" />
         <div className="stats-grid">
@@ -30,8 +31,10 @@ export default function Dashboard() {
         <div className="charts-grid">
           <PieChart />
           <CustomBarChart />
+
         </div>
 
+          <StatusInfo/>
         <div className="table-section">
           <CVTable />
         </div>

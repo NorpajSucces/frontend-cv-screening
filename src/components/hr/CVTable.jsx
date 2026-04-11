@@ -8,13 +8,14 @@ export default function CVTable() {
 
     return (
         <div className="table-container">
+            <h1>Recently Added</h1>
             <table className="cv-table">
                 <thead>
                     <tr>
                         <th>Candidate Name</th>
                         <th>CV Score</th>
                         <th>Applied Date</th>
-                        <th>AI - Status</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
 

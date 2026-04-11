@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { sortByName, sortByScore } from "../../store/slices/dashboardSlice";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../pages/hr/Candidate.css"
 
 export default function CandidateTable() {
@@ -11,17 +11,23 @@ export default function CandidateTable() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+
     const [nameOrder, setNameOrder] = useState("asc");
     const [scoreOrder, setScoreOrder] = useState("asc");
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const dataPerPage = 10;
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [selectedJobId, search]);
 
-    const filteredData = applicantsData.filter((c) =>
-        c.name.toLowerCase().includes(search.toLowerCase())
-    );
+
+    const filteredData = applicantsData
+        .filter((c) => c.jobId === selectedJobId)
+        .filter((c) =>
+            c.name.toLowerCase().includes(search.toLowerCase())
+        );
 
     const indexOfLast = currentPage * dataPerPage;
     const indexOfFirst = indexOfLast - dataPerPage;
@@ -33,6 +39,7 @@ export default function CandidateTable() {
     return (
         <div className="card table-container">
             <div className="table-actions">
+                <h1>Candidate List</h1>
                 <input
                     type="text"
                     placeholder="Search candidate..."
@@ -42,6 +49,7 @@ export default function CandidateTable() {
                 />
             </div>
             <table className="candidate-table">
+
                 <thead>
                     <tr>
                         <th

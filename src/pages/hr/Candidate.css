@@ -10,6 +10,14 @@
   min-height: 100vh;
 }
 
+.divider {
+  width: flex;
+  border: none;
+  height: 1px;
+  background: #cbd5e1;
+  margin: 10px 0 20px 0;
+}
+
 /* HEADER */
 .candidate-header {
   width: 100%;
@@ -21,7 +29,7 @@
 .candidate-header h1 {
   font-size: 28px;
   font-weight: 600;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 .candidate-header h2 {
@@ -57,7 +65,7 @@
 
 .active-jobs .header span {
   font-size: 12px;
-  color: #2563EB;
+  color: #2563eb;
   font-weight: 600;
 }
 
@@ -76,7 +84,7 @@
 }
 
 .job-item.active {
-  border-left: 4px solid #2563EB;
+  border-left: 4px solid #2563eb;
   background: #eef2ff;
 }
 
@@ -103,13 +111,12 @@
 }
 
 .candidate-table th:hover {
-  color: #2563EB;
+  color: #2563eb;
 }
 
 /* =COLUMN WIDTH=================== */
 .candidate-table th:nth-child(1) {
   width: 30%;
-  text-align: center;
 }
 .candidate-table td:nth-child(1) {
   width: 30%;
@@ -161,7 +168,7 @@
 
 .candidate-table th:hover {
   background: #eef2ff;
-  color: #2563EB;
+  color: #2563eb;
 }
 
 /* =SCORE BAR================== */
@@ -174,7 +181,7 @@
 
 .score-bar div {
   height: 100%;
-  background: #2563EB;
+  background: #2563eb;
   border-radius: 10px;
   margin-right: 10px;
 }
@@ -252,7 +259,8 @@ small {
 .table-actions {
   margin-bottom: 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search-input {
@@ -287,4 +295,24 @@ small {
 .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.job-status {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+/* OPEN (hijau) */
+.job-status.open {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* CLOSED (merah) */
+.job-status.closed {
+  background: #fee2e2;
+  color: #991b1b;
 }

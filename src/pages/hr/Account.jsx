@@ -64,6 +64,8 @@ const Account = () => {
               <h1>Account Settings</h1>
               <p>Manage your administrative security preferences.</p>
             </div>
+            <hr className="divider" />
+
 
             {/* USER INFO FULL WIDTH */}
             <div className="user-info full-width">

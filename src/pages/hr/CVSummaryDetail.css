@@ -1,4 +1,4 @@
-.cv-page{
+.cv-page {
   display: flex;
   background: #f5f7fa;
 }
@@ -6,7 +6,34 @@
 .cv-container {
   display: flex;
   flex-direction: column;
-  padding-right: 150px
+  padding-right: 150px;
+}
+
+.cv-head {
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.cv-head h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.cv-head h2 {
+  font-size: 12px;
+  font-weight: 200;
+  color: #64748b;
+}
+
+.divider {
+  width: flex;
+  border: none;
+  height: 1px;
+  background: #cbd5e1;
+  margin: 10px 0 20px 0;
 }
 
 /* CARD */
