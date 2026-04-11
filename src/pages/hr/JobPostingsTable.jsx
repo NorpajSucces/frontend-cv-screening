@@ -48,11 +48,11 @@ const JobPostingsTable = ({ jobs, onEdit, onDelete, onToggleStatus }) => {
                   </span>
                 </td>
                 <td>
-                  <button className="edit-btn" onClick={() => onEdit(job)}>
-                    <span role="img" aria-label="edit">edit</span>
+                  <button className="edit-btn" onClick={() => onEdit(job)} title="Edit">
+                    <span className="material-symbols-rounded">edit</span>
                   </button>
-                  <button className="delete-btn" onClick={() => onDelete(job)}>
-                    <span role="img" aria-label="delete">delete</span>
+                  <button className="delete-btn" onClick={() => onDelete(job)} title="Delete">
+                    <span className="material-symbols-rounded">delete</span>
                   </button>
                 </td>
               </tr>

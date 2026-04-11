@@ -16,34 +16,12 @@ export default function CustomBarChart() {
         (state) => state.dashboard
     );
 
-    // 🎯 Filter berdasarkan PieChart
-    // const filtered = applicantsData.filter(
-    //     (c) =>
-    //         selectedCategory === "All" ||
-    //         c.category === selectedCategory
-    // );
-
-    // 🎯 Hitung jumlah status
-    // const statusCount = {
-    //     accepted: 0,
-    //     rejected: 0,
-    //     pending: 0,
-    // };
-
-    // filtered.forEach((c) => {
-    //     if (statusCount[c.status] !== undefined) {
-    //         statusCount[c.status]++;
-    //     }
-    // });
-
-    // 🎯 Data untuk chart + legend
     const data = [
         { name: "Accepted", value: barData.accepted ?? 0 },
-        { name: "Rejected", value: barData.rejected ?? 0},
-        { name: "Pending", value: barData.pending ?? 0},
+        { name: "Rejected", value: barData.rejected ?? 0 },
+        { name: "Pending", value: barData.pending ?? 0 },
     ];
 
-    // 🎨 Warna konsisten
     const colors = {
         Accepted: "#3b82f6",
         Rejected: "#ef4444",
@@ -51,19 +29,34 @@ export default function CustomBarChart() {
     };
 
     return (
-        <div className="card bar-container">
-            <h3>Candidate Status ({selectedCategory})</h3>
+        <div className="bar-container-original">
+            <div className="chart-header-simple">
+                 <h3>Candidate Status</h3>
+                 <span className="category-tag">{selectedCategory}</span>
+            </div>
 
-            {/* CHART */}
-            <div style={{ width: "100%", height: "100%" }}>
+            <div className="chart-wrapper-simple">
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis allowDecimals={false} />
-                        <Tooltip />
+                    <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                        <XAxis 
+                            dataKey="name" 
+                            axisLine={false} 
+                            tickLine={false} 
+                            tick={{ fill: '#64748b', fontSize: 12 }}
+                        />
+                        <YAxis 
+                            allowDecimals={false} 
+                            axisLine={false} 
+                            tickLine={false} 
+                            tick={{ fill: '#64748b', fontSize: 12 }} 
+                        />
+                        <Tooltip 
+                            cursor={{ fill: '#f8fafc' }}
+                            contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                        />
 
-                        <Bar dataKey="value" radius={[6, 6, 0, 0]}>
+                        <Bar dataKey="value" radius={[4, 4, 0, 0]} barSize={40}>
                             {data.map((entry, index) => (
                                 <Cell
                                     key={index}
@@ -75,22 +68,15 @@ export default function CustomBarChart() {
                 </ResponsiveContainer>
             </div>
 
-            {/* LEGEND + VALUE */}
-            <div className="bar-legend">
+            <div className="bar-legend-original">
                 {data.map((item, index) => (
-                    <div key={index} className="legend-item">
+                    <div key={index} className="legend-item-pill">
                         <span
-                            className="color-box"
+                            className="status-dot"
                             style={{ background: colors[item.name] }}
                         ></span>
-
-                        <span className="legend-label">
-                            {item.name}
-                        </span>
-
-                        <span className="legend-value">
-                            {item.value}
-                        </span>
+                        <span className="label">{item.name}</span>
+                        <span className="value">{item.value}</span>
                     </div>
                 ))}
             </div>

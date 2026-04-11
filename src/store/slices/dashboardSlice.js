@@ -148,7 +148,9 @@ const dashboardSlice = createSlice({
         builder.addCase(fetchRecentCandidates.fulfilled, (state, action) => {
             console.log('Recent candidates mapped:', action.payload);
             state.applicantsData = action.payload.map((item) => ({
+                id: item.id,
                 name: item.name,
+                email: item.email,
                 score: item.score ?? 0,
                 status: mapStatus(item.status),
                 appliedAt: item.appliedAt

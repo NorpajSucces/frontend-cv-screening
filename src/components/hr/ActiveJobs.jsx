@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedJob, setJobs } from "../../store/slices/dashboardSlice";
-import "../../pages/hr/Candidate.css"
+import "../../pages/hr/Candidate.css";
 import { useEffect } from "react";
 import { hrJobService } from "../../services/hrJobService";
 import { setCandidates } from "../../store/slices/candidateSlice";
@@ -12,18 +12,35 @@ export default function ActiveJobs() {
         (state) => state.dashboard
     );
 
+    // Fetch jobs on mount
     useEffect(() => {
-        hrJobService.getJobs()
-            .then((data) => {
-                // console.log('RAW JOBS:', data);
-                const jobs = data.data;
-                // filter only open jobs
+        const fetchJobs = async () => {
+            try {
+                const response = await hrJobService.getJobs();
+                const jobs = response.data;
                 const openJobs = jobs.filter(job => job.status === "open");
-
                 dispatch(setJobs(openJobs));
-            })
-            .catch((err) => console.log(err));
+
+                if (openJobs.length > 0 && !selectedJobId) {
+                    handleJobClick(openJobs[0]._id);
+                }
+            } catch (err) {
+                console.error("Failed to fetch jobs:", err);
+            }
+        };
+
+        fetchJobs();
     }, [dispatch]);
+
+    const handleJobClick = async (jobId) => {
+        dispatch(setSelectedJob(jobId));
+        try {
+            const data = await candidateService.getByJob(jobId);
+            dispatch(setCandidates(data));
+        } catch (err) {
+            console.error("Failed to fetch candidates for job:", err);
+        }
+    };
 
     return (
         <div className="active-jobs card">
@@ -32,26 +49,44 @@ export default function ActiveJobs() {
                 <span>{activeJobs.length} TOTAL</span>
             </div>
 
-            {activeJobs.map((job) => (
-                <div
-                    key={job._id}
-                    className={`job-item ${selectedJobId === job._id ? "active" : ""
-                        }`}
-                    onClick={() => {
-                        dispatch(setSelectedJob(job._id));
+            {activeJobs.length === 0 ? (
+                <div className="empty-state">No active jobs found.</div>
+            ) : (
+                activeJobs.map((job) => (
+                    <div
+                        key={job._id}
+                        className={`job-item ${selectedJobId === job._id ? "active" : ""}`}
+                        onClick={() => handleJobClick(job._id)}
+                    >
+                        <div className="job-title-row">
+                            <span className="material-symbols-rounded job-icon">work</span>
+                            <h4>{job.title}</h4>
+                        </div>
+                        
+                        <div className="job-meta-row">
+                            <div className="job-meta-item">
+                                <span className="material-symbols-rounded">location_on</span>
+                                <span>{job.location || 'Remote'}</span>
+                            </div>
+                            <div className="job-meta-item">
+                                <span className="material-symbols-rounded">schedule</span>
+                                <span>{job.employmentType || 'Full-time'}</span>
+                            </div>
+                        </div>
 
-                        candidateService.getByJob(job._id)
-                            .then((data) => {
-                                console.log('CANDIDATES API:', data);
-                                dispatch(setCandidates(data));
-                            })
-                            .catch(err => console.error(err))
-                    }}
-                >
-                    <h4>{job.title}</h4>
-                    <p>{job.title} Applicants</p>
-                </div>
-            ))}
+                        <div className="job-stats-row">
+                            <div className="applicant-count-pill">
+                                <span className="material-symbols-rounded">group</span>
+                                <strong>{job.applicantCount || 0}</strong>
+                                <span>Applicants</span>
+                            </div>
+                            <span className={`job-status ${job.status}`}>
+                                {job.status}
+                            </span>
+                        </div>
+                    </div>
+                ))
+            )}
         </div>
     );
 }

@@ -1,51 +1,106 @@
 .dashboard {
   display: flex;
-  width: 100%;
+  min-height: 100vh;
+  background-color: #f8fafc;
 }
 
-.dashboard-header {
-  width: 100%;
-  display: block;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+.main-content {
+  flex: 1;
+  padding: 40px;
+  background-color: #fcfdfe;
 }
 
-.dashboard-header h1 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #2563EB;
+/* HEADER PREMIUM */
+.dashboard-header-premium {
+  margin-bottom: 40px;
 }
 
-.dashboard-header h2 {
-  font-size: 12px;
-  font-weight: 200;
-  color: #64748b;
+.welcome-text {
+  font-size: 14px;
+  color: #718096;
+  margin: 0 0 4px 0;
 }
 
-.divider {
-  width: flex;
-  border: none;
-  height: 1px;
-  background: #cbd5e1;
-  margin: 10px 0 20px 0;
-}
-
-.charts-grid {
+.greeting-row {
   display: flex;
-  gap: 20px;
-  width: 100%;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
 }
+
+.admin-name {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 0;
+}
+
+.wave-icon {
+  font-size: 28px;
+}
+
+.sub-greeting {
+  font-size: 15px;
+  color: #a0aec0;
+  margin: 0;
+}
+
+/* OVERVIEW SECTION */
+.overview-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2d3748;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
-.table-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+/* CHART & TABLE WRAPPERS */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
 }
-.table-section {
-  margin-top: 20px;
+
+.table-section-wrapper {
+  margin-top: 40px;
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+}
+
+.table-header-simple {
+  margin-bottom: 24px;
+}
+
+.table-header-simple h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 4px 0;
+}
+
+.table-header-simple p {
+  font-size: 14px;
+  color: #718096;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,18 +1,17 @@
-import { useDispatch } from "react-redux";
-import { updateStats } from "../../store/slices/dashboardSlice";
 import "./StatCard.css";
 
-export default function StatCard({ title, value }) {
-    const dispatch = useDispatch();
-
+export default function StatCard({ title, value, icon, type, subLabel }) {
     return (
-        <div className="stat-card">
-            <div className="stat-icon">
-                <span className="material-symbols-rounded">analytics</span>
+        <div className={`stat-card ${type}`}>
+            <div className="stat-icon-box">
+                <span className="material-symbols-rounded">{icon}</span>
             </div>
-            <div className="stat-content">
-                <h2>{value}</h2>
-                <p>{title}</p>
+            <div className="stat-info">
+                <p className="stat-label">{title}</p>
+                <div className="stat-value-container">
+                    <span className="stat-value">{value}</span>
+                    <span className="stat-sublabel">{subLabel}</span>
+                </div>
             </div>
         </div>
     );

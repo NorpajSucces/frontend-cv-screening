@@ -3,12 +3,52 @@
   background: #f5f7fa;
 }
 
+/* ============================================
+   MAIN CONTENT — responds to sidebar collapse
+   ============================================ */
+.cv-page .main-content {
+  margin-left: 270px;
+  padding: 30px;
+  width: calc(100% - 270px);
+  background: #f8fafc;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.cv-page .main-content.sidebar-collapsed {
+  margin-left: 50px;
+  width: calc(100% - 50px);
+}
+
 .cv-container {
   display: flex;
   flex-direction: column;
-  padding-right: 150px;
 }
 
+/* BACK BUTTON */
+.back-btn {
+  background: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #f1f5f9;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
 .cv-head {
   width: 100%;
   display: block;
@@ -29,14 +69,16 @@
 }
 
 .divider {
-  width: flex;
+  width: 100%;
   border: none;
   height: 1px;
   background: #cbd5e1;
   margin: 10px 0 20px 0;
 }
 
-/* CARD */
+/* ============================================
+   CARD
+   ============================================ */
 .card {
   background: white;
   border-radius: 12px;
@@ -45,7 +87,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* HEADER */
+/* ============================================
+   CANDIDATE HEADER CARD
+   ============================================ */
 .cv-header {
   display: flex;
   align-items: center;
@@ -58,16 +102,20 @@
   background: #4f46e5;
   color: white;
   font-weight: bold;
+  font-size: 1.2rem;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-/* INFO */
+/* ============================================
+   INFO CARD
+   ============================================ */
 .cv-info {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .cv-info span {
@@ -75,260 +123,42 @@
   color: #64748b;
 }
 
-/* ANALYSIS */
+/* ============================================
+   CV ANALYSIS
+   ============================================ */
 .cv-analysis h3 {
-  margin-bottom: 15px;
-}
-
-.score-box {
-  display: flex;
-  align-items: center;
-  gap: 15px;
   margin-bottom: 20px;
+  font-size: 20px;
+  color: #1e293b;
 }
 
-.circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #eef2ff;
-  color: #4f46e5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+.cv-analysis h4 {
+  font-size: 16px;
+  color: #334155;
+  margin-bottom: 8px;
 }
 
-.stars {
-  color: gold;
-}
-
-/* SKILL */
-.skill {
-  display: grid;
-  grid-template-columns: 120px 1fr 60px;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.bar {
-  height: 6px;
-  background: #e2e8f0;
-  border-radius: 10px;
-}
-
-.bar div {
-  height: 100%;
-  background: #4f46e5;
-  border-radius: 10px;
-}
-
-/* SUMMARY */
-.summary {
-  margin-top: 20px;
-}
-
-/* LIST */
-.strength ul,
-.weakness ul {
-  margin-top: 10px;
-  padding-left: 15px;
-}
-
-.strength li {
-  color: #16a34a;
-}
-
-.weakness li {
-  color: #dc2626;
-}
-
-/* ACTION */
-.cv-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cv-download {
-  background: #16a34a;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.reject {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.accept {
-  background: #4f46e5;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.reject:hover {
-  background: #dc2626;
-}
-
-.accept:hover {
-  background: #4338ca;
-}
-
-/* OVERLAY */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-/* MODAL BOX */
-.modal {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  width: 400px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.modal h2 {
-  margin-bottom: 10px;
-}
-
-.modal p {
-  color: #64748b;
-  margin-bottom: 20px;
-}
-
-/* BUTTONS */
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.cancel {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background: #e5e7eb;
-  cursor: pointer;
-}
-
-.confirm {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background: #ef4444;
-  color: white;
-  cursor: pointer;
-}
-
-.cancel:hover {
-  background: #d1d5db;
-}
-
-.confirm:hover {
-  background: #dc2626;
-}
-
-/* VARIASI BUTTON MODAL */
-.confirm.reject-btn {
-  background: #ef4444;
-}
-
-.confirm.reject-btn:hover {
-  background: #dc2626;
-}
-
-.confirm.accept-btn {
-  background: #4f46e5;
-}
-
-.confirm.accept-btn:hover {
-  background: #4338ca;
-}
-.cv-container {
-  margin-left: 270px;
-  padding: 30px;
+/* ============================================
+   SCORE SECTION (replaces hardcoded stars)
+   ============================================ */
+.score-section {
   background: #f8fafc;
-  min-height: 100vh;
-}
-
-/* CARD */
-.card {
-  background: white;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
 }
 
-/* HEADER */
-.cv-header {
+.score-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.avatar {
-  width: 50px;
-  height: 50px;
-  background: #4f46e5;
-  color: white;
-  font-weight: bold;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* INFO */
-.cv-info {
-  display: flex;
-  gap: 20px;
-}
-
-.cv-info span {
-  font-size: 12px;
-  color: #64748b;
-}
-
-/* ANALYSIS */
-.cv-analysis h3 {
-  margin-bottom: 15px;
-}
-
-.score-box {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .circle {
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #eef2ff;
   color: #4f46e5;
@@ -336,43 +166,80 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
-.stars {
-  color: gold;
+.score-label .score-title {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 15px;
+  margin: 0;
 }
 
-/* SKILL */
-.skill {
-  display: grid;
-  grid-template-columns: 120px 1fr 60px;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+.score-label .score-subtitle {
+  color: #64748b;
+  font-size: 13px;
+  margin: 2px 0 0 0;
 }
 
-.bar {
-  height: 6px;
+.score-bar-container {
+  width: 100%;
+  height: 10px;
   background: #e2e8f0;
   border-radius: 10px;
+  overflow: hidden;
 }
 
-.bar div {
+.score-bar-fill {
   height: 100%;
-  background: #4f46e5;
   border-radius: 10px;
+  transition: width 0.6s ease;
 }
 
-/* SUMMARY */
+.score-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* ============================================
+   SUMMARY
+   ============================================ */
 .summary {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-/* LIST */
+.summary p {
+  color: #475569;
+  line-height: 1.7;
+  font-size: 14px;
+  text-align: justify;
+}
+
+/* ============================================
+   STRENGTHS & WEAKNESS — bullet points
+   ============================================ */
+.strength,
+.weakness {
+  margin-bottom: 16px;
+}
+
 .strength ul,
 .weakness ul {
   margin-top: 10px;
-  padding-left: 15px;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.strength li,
+.weakness li {
+  padding: 6px 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .strength li {
@@ -383,7 +250,9 @@
   color: #dc2626;
 }
 
-/* ACTION */
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
 .cv-actions {
   display: flex;
   justify-content: space-between;
@@ -398,6 +267,12 @@
   border-radius: 8px;
   margin-right: 10px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.cv-download:hover {
+  background: #15803d;
 }
 
 .reject {
@@ -408,6 +283,12 @@
   border-radius: 8px;
   margin-right: 10px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.reject:hover {
+  background: #dc2626;
 }
 
 .accept {
@@ -417,17 +298,17 @@
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-}
-
-.reject:hover {
-  background: #dc2626;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 
 .accept:hover {
   background: #4338ca;
 }
 
-/* OVERLAY */
+/* ============================================
+   MODAL
+   ============================================ */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -441,7 +322,6 @@
   z-index: 999;
 }
 
-/* MODAL BOX */
 .modal {
   background: white;
   padding: 25px;
@@ -459,7 +339,6 @@
   margin-bottom: 20px;
 }
 
-/* BUTTONS */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
@@ -472,6 +351,11 @@
   border: none;
   background: #e5e7eb;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel:hover {
+  background: #d1d5db;
 }
 
 .confirm {
@@ -481,17 +365,13 @@
   background: #ef4444;
   color: white;
   cursor: pointer;
-}
-
-.cancel:hover {
-  background: #d1d5db;
+  transition: background 0.2s;
 }
 
 .confirm:hover {
   background: #dc2626;
 }
 
-/* VARIASI BUTTON MODAL */
 .confirm.reject-btn {
   background: #ef4444;
 }

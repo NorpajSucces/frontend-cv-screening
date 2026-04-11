@@ -2,7 +2,6 @@
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   padding: 24px;
 }
 
@@ -12,8 +11,6 @@
   margin-bottom: 16px;
 }
 
-.job-table th,
-.job-table td {
 .job-table th,
 .job-table td {
   padding: 16px 12px;
@@ -103,13 +100,40 @@ input:checked + .slider:before {
 .edit-btn,
 .delete-btn {
   background: none;
-  border: none;
+  border: 1px solid #e2e8f0;
   cursor: pointer;
   font-size: 16px;
   margin-right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
 }
+
+.edit-btn {
+  color: #2563eb;
+}
+
+.edit-btn:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+}
+
 .delete-btn {
-  color: #f44336;
+  color: #ef4444;
+}
+
+.delete-btn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.edit-btn .material-symbols-rounded,
+.delete-btn .material-symbols-rounded {
+  font-size: 20px;
 }
 
 .pagination {

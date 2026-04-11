@@ -1,4 +1,3 @@
-import { ArrowUpZaIcon, ReceiptEuro } from 'lucide-react';
 import axiosInstance from './axiosInstance';
 
 const API_BASE = 'http://localhost:5000/api';

@@ -1,59 +1,46 @@
-import { useDispatch, useSelector } from "react-redux";
-import { sortByName, sortByScore } from "../../store/slices/dashboardSlice";
-import { useState } from "react";
-import "./CVTable.css"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./CVTable.css";
 
 export default function CVTable() {
     const { applicantsData } = useSelector((state) => state.dashboard);
-    const dispatch = useDispatch();
-
-    const [nameOrder, setNameOrder] = useState("asc");
-    const [scoreOrder, setScoreOrder] = useState("asc");
+    const navigate = useNavigate();
 
     return (
         <div className="table-container">
+
             <table className="cv-table">
                 <thead>
                     <tr>
-                        <th onClick={() => {
-                            const newOrder = nameOrder === "asc" ? "desc" : "asc";
-                            setNameOrder(newOrder);
-                            dispatch(sortByName(newOrder));
-                        }}>
-                            Candidate Name
-                        </th>
-
-                        <th onClick={() => {
-                            const newOrder = scoreOrder === "asc" ? "desc" : "asc";
-                            setScoreOrder(newOrder);
-                            dispatch(sortByScore(newOrder));
-                        }}>
-                            CV Score
-                        </th>
-
-                        <th>AI - Status</th>
+                        <th>Candidate Name</th>
+                        <th>CV Score</th>
+                        <th>Applied Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {applicantsData.length === 0 ? (
-                        <tr>
-                            <td colSpan='3' style={{ textAlign: 'center' }}>
-                                No recent candidates
-                            </td>
-                        </tr>
-                    ) : (
-                    applicantsData.map((c, i) => (
+                    {applicantsData.map((c, i) => (
                         <tr key={i}>
-                            <td>{c.name}</td>
+                            <td>
+                                <strong
+                                    className="clickable-name"
+                                    onClick={() => navigate(`/hr/candidates/${c.id}`)}
+                                >
+                                    {c.name}
+                                </strong>
+                                <br />
+                                <small>{c.email || `${c.name.toLowerCase().replace(/\s/g, '.')}@mail.com`}</small>
+                            </td>
                             <td>{c.score}%</td>
-                            <td>  <span className={`status-${c.status}`}>
-                                {c.status}
-                            </span>
+                            <td>{new Date(c.appliedAt).toLocaleDateString('en-GB')}</td>
+                            <td>
+                                <span className={`status-${c.status}`}>
+                                    {c.status}
+                                </span>
                             </td>
                         </tr>
-                    ))
-                    )}
+                    ))}
                 </tbody>
             </table>
         </div>

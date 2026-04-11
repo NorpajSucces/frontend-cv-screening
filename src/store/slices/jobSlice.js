@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import jobService from '../../services/jobService';
 
 // ASYNC THUNKS — Panggilan ke Backend API
@@ -38,96 +38,52 @@ export const fetchJobById = createAsyncThunk(
 // ============================================================
 // SLICE
 
-import { hrJobService } from '../../services/hrJobService';
-
-export const fetchJobs = createAsyncThunk(
-  'hrJob/fetchJobs',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await hrJobService.getJobs();
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-export const toggleJobStatus = createAsyncThunk(
-  'hrJob/toggleJobStatus',
-  async ({ jobId, status }, { rejectWithValue }) => {
-    try {
-      const response = await hrJobService.updateJobStatus(jobId, status);
-      return { _id: jobId, ...response.data };
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-export const createJob = createAsyncThunk(
-  'hrJob/createJob',
-  async (jobData, { rejectWithValue }) => {
-    try {
-      const response = await hrJobService.createJob(jobData);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-export const updateJob = createAsyncThunk(
-  'hrJob/updateJob',
-  async ({ jobId, jobData }, { rejectWithValue }) => {
-    try {
-      const response = await hrJobService.updateJob(jobId, jobData);
-      return { _id: jobId, ...response.data };
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-export const deleteJob = createAsyncThunk(
-  'hrJob/deleteJob',
-  async (jobId, { rejectWithValue }) => {
-    try {
-      await hrJobService.deleteJob(jobId);
-      return jobId;
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-const hrJobSlice = createSlice({
-  name: 'hrJob',
+const jobSlice = createSlice({
+  name: 'job',
   initialState: {
-    jobs:        [],        // Daftar semua loker untuk halaman JobList
-    currentJob: null,
-    selectedJob: null,      // Loker yang sedang dilihat di halaman JobDetail
-    loading:     false,
-    error:       null,
+    jobs: [],
+    selectedJob: null,
+    loading: false,
+    error: null,
   },
   reducers: {
-    clearError: (state) => { state.error = null; },
+    clearSelectedJob: (state) => {
+      state.selectedJob = null;
+    },
+    clearError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchJobs.pending, (state) => { state.loading = true; })
-      .addCase(fetchJobs.fulfilled, (state, action) => {
-        state.loading = false;
-        state.jobs = action.payload.data || action.payload;
+      // fetchPublicJobs
+      .addCase(fetchPublicJobs.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(fetchJobs.rejected, (state, action) => {
+      .addCase(fetchPublicJobs.fulfilled, (state, action) => {
+        state.loading = false;
+        state.jobs = action.payload;
+      })
+      .addCase(fetchPublicJobs.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(deleteJob.fulfilled, (state, action) => {
-        state.jobs = state.jobs.filter(job => (job._id || job.id) !== action.payload);
+      // fetchJobById
+      .addCase(fetchJobById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchJobById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedJob = action.payload;
+      })
+      .addCase(fetchJobById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { clearError } = hrJobSlice.actions;
-export default hrJobSlice.reducer;
+export const { clearSelectedJob, clearError } = jobSlice.actions;
+export default jobSlice.reducer;

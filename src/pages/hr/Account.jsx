@@ -10,6 +10,11 @@ const Account = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
+  // Password visibility toggles
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   // Mock user data
   const user = {
     name: 'HR Admin',
@@ -47,43 +52,10 @@ const Account = () => {
     setShowModal(false);
   };
 
-
   return (
     <div className="account-page">
       <Sidebar />
 
-     <main className="main-content">
-        <div className="account-content">
-          <div className="account-wrapper">
-
-            {/* HEADER */}
-            <div className="account-heading">
-              <h1>Account Settings</h1>
-              <p>Manage your administrative security preferences.</p>
-            </div>
-
-            {/* USER INFO FULL WIDTH */}
-            <div className="user-info full-width">
-              <div className="user-avatar">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-              <div className="user-details">
-                <h3>{user.name}</h3>
-                <p>{user.email}</p>
-                <p className="user-role">HR Admin</p>
-                <p className="user-joined">Joined: Apr 2026</p>
-              </div>
-            </div>
-
-            {/* GRID */}
-            <div className="content-grid">
-
-              {/* LEFT: FORM */}
-              <div className="settings-card">
-                <div className="settings-header">
-                <h2>Security</h2>
-                </div>
-                <p>Update your password and keep your account secure.</p>
       <main className="main-content">
         <div className="account-content">
           <div className="account-wrapper">
@@ -95,14 +67,13 @@ const Account = () => {
             </div>
             <hr className="divider" />
 
-
             {/* USER INFO FULL WIDTH */}
             <div className="user-info full-width">
               <div className="user-avatar">
                 {user.name.charAt(0).toUpperCase()}
               </div>
               <div className="user-details">
-
+                <h3>{user.name}</h3>
                 <p>{user.email}</p>
                 <p className="user-role">HR Admin</p>
                 <p className="user-joined">Joined: Apr 2026</p>
@@ -208,7 +179,6 @@ const Account = () => {
         </div>
       </main>
 
-      {/* MODAL */}
       {/* MODAL */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>

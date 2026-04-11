@@ -123,20 +123,7 @@ const JobPosting = () => {
             onSave={handleSaveJob}
           />
         )}
-        {showCreateModal && (
-          <CreateEditJobModal
-            onClose={() => setShowCreateModal(false)}
-            onSave={handleSaveJob}
-          />
-        )}
 
-        {showEditModal && (
-          <CreateEditJobModal
-            job={selectedJob}
-            onClose={() => setShowEditModal(false)}
-            onSave={handleSaveJob}
-          />
-        )}
         {showEditModal && (
           <CreateEditJobModal
             job={selectedJob}

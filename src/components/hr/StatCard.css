@@ -1,77 +1,92 @@
 .stat-card {
-  background: #ffffff;
+  padding: 24px;
+  background: #fff;
   border-radius: 16px;
-  padding: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.stat-card-modern {
-  background: #f1f5f9;
-  border-radius: 16px;
-  padding: 18px;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-
-  align-items: center;
-  gap: 15px;
-
-  position: relative;
-  transition: all 0.25s ease;
-}
-
-.stat-card-modern:hover {
-  transform: translateY(-3px);
-  background: #e2e8f0;
-}
-
-/* ICON BOX */
-.stat-icon {
-  width: 45px;
-  height: 45px;
+.stat-icon-box {
+  width: 52px;
+  height: 52px;
   border-radius: 12px;
-  background: #c7d2fe;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.stat-icon span {
-  font-size: 22px;
-  color: #2563EB;
+.stat-icon-box span {
+  font-size: 24px;
 }
 
-/* TEXT */
-.stat-content h2 {
-  font-size: clamp(18px, 2vw, 24px);
-  margin-left: 10px;
-  font-weight: 600;
-  color: #1e293b;
-  justify-content: left;
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
-.stat-content p {
-  font-size: 13px;
-  margin-left: 10px;
+.stat-label {
+  font-size: 11px;
+  font-weight: 800;
   color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
 }
 
-/* INPUT hidden tapi tetap aktif */
-.stat-hidden-input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
+.stat-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1;
+}
+
+.stat-sublabel {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* THEMED BOXES */
+.vacancies .stat-icon-box {
+  background: #eff6ff; /* light blue */
+  color: #2563eb;
+}
+
+.applicants .stat-icon-box {
+  background: #eef2ff; /* light indigo */
+  color: #4f46e5;
+}
+
+.accepted .stat-icon-box {
+  background: #f0fdf4; /* light green */
+  color: #22c55e;
+}
+
+.rejected .stat-icon-box {
+  background: #fef2f2; /* light red */
+  color: #ef4444;
+}
+
+.pending .stat-icon-box {
+  background: #fffbeb; /* light yellow */
+  color: #d97706;
 }
