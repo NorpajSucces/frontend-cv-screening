@@ -27,6 +27,18 @@ const candidateService = {
         return response.data;
     },
 
+    // retry AI screening
+    retry: async (id) => {
+        const response = await axiosInstance.post(`/candidates/${id}/retry`);
+        return response.data;
+    },
+
+    // bulk delete candidates
+    bulkDelete: async (ids) => {
+        const response = await axiosInstance.post(`/candidates/bulk-delete`, { ids });
+        return response.data;
+    },
+
     // CV download (not axios)
     downloadCV: (id) => {
         window.open(`${API_BASE}/candidates/${id}/download-cv`, '_blank');
