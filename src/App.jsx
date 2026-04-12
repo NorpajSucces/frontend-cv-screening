@@ -9,6 +9,7 @@ import { LandingPage } from './pages/public/LandingPage';
 import { JobListPage } from './pages/public/JobListPage';
 import { JobDetailPage } from './pages/public/JobDetailPage';
 import { ApplyForm } from './pages/public/ApplyForm';
+import { NotFound } from './pages/public/NotFound';
 
 // HR Pages
 import Login from './pages/hr/Login';
@@ -54,6 +55,9 @@ function App() {
           <Route path="/hr/candidates" element={<ProtectedRoute><Candidate /></ProtectedRoute>} />
           <Route path="/hr/candidates/:id" element={<ProtectedRoute><CVSummaryDetail /></ProtectedRoute>} />
           <Route path="/hr/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+
+          {/* 404 Not Found - To handle unknown URLs */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 

@@ -1,0 +1,98 @@
+.not-found-container {
+  min-height: calc(100vh - 80px); /* Adjust for fixed navbar height */
+  margin-top: 80px; /* Push down to clear fixed navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 40px; /* Increased top padding */
+  background-image: url('../../assets/page_is_not_found.webp');
+  background-size: cover;
+  background-position: top center; /* Make sure the '404' at the top is visible */
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.not-found-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2); /* Subtle white overlay to soften background */
+  backdrop-blur: 2px;
+  z-index: 1;
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Push content down to avoid covering the text in the background image if needed */
+  margin-top: 200px; 
+}
+
+.text-content {
+  margin-top: 20px;
+}
+
+.back-home-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 1.125rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-home-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 25px 40px -10px rgba(37, 99, 235, 0.5);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .not-found-container {
+    background-size: contain;
+    background-position: top center;
+    padding-top: 100px;
+  }
+  .not-found-content {
+    margin-top: 250px;
+  }
+  .back-home-btn {
+    padding: 12px 28px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .error-title {
+    font-size: 2rem;
+  }
+  .error-code {
+    font-size: 5rem;
+  }
+}
