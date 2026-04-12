@@ -32,11 +32,16 @@ export default function CVTable() {
                                 <br />
                                 <small>{c.email || `${c.name.toLowerCase().replace(/\s/g, '.')}@mail.com`}</small>
                             </td>
-                            <td>{c.score}%</td>
+                            <td>
+                                <div className="score-bar">
+                                    <div style={{ width: `${c.score || 0}%` }}></div>
+                                </div>
+                                <small>{c.score || 0}/100</small>
+                            </td>
                             <td>{new Date(c.appliedAt).toLocaleDateString('en-GB')}</td>
                             <td>
-                                <span className={`status-${c.status}`}>
-                                    {c.status}
+                                <span className={`status-${c.status === "advanced" ? "accepted" : c.status}`}>
+                                    {c.status === "advanced" ? "accepted" : c.status}
                                 </span>
                             </td>
                         </tr>

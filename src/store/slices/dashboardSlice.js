@@ -61,7 +61,8 @@ const initialState = {
 const mapStatus = (status) => {
     if (status === 'advanced') return 'accepted';
     if (status === 'rejected') return 'rejected';
-    if (status === 'processed') return 'pending';
+    if (status === 'processed') return 'processed';
+    if (status === 'failed') return 'failed';
     return 'pending';
 }
 
