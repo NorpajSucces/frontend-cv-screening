@@ -73,12 +73,12 @@ const CreateEditJobModal = ({ job, onClose, onSave }) => {
             </div>
           </div>
           <div className="modal-field">
-            <label>Job Description</label>
-            <textarea name="description" value={form.description} onChange={handleChange} required placeholder="Describe the core mission of this role..." />
-          </div>
-          <div className="modal-field">
             <label>About Position</label>
             <textarea name="aboutPosition" value={form.aboutPosition} onChange={handleChange} required placeholder="Describe responsibilities of this role..." />
+          </div>
+          <div className="modal-field">
+            <label>Job Description</label>
+            <textarea name="description" value={form.description} onChange={handleChange} required placeholder="Describe the core mission of this role..." />
           </div>
           <div className="modal-field">
             <label>Requirements</label>

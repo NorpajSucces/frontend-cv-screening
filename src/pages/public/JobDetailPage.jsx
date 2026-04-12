@@ -147,7 +147,7 @@ export const JobDetailPage = () => {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-12 h-1 bg-primary rounded-full" />
-                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">The Opportunity</h3>
+                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">About Position</h3>
               </div>
               <p className="text-xl text-slate-600 leading-relaxed font-medium">{job.aboutPosition}</p>
             </motion.div>
@@ -156,7 +156,7 @@ export const JobDetailPage = () => {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-12 h-1 bg-primary rounded-full" />
-                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Description</h3>
+                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Job Description</h3>
               </div>
               <div className="space-y-4">
                  {renderList(job.description)}
