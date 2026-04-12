@@ -47,9 +47,8 @@
 
 .stat-value-container {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .stat-value {
