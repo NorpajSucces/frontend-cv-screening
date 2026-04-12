@@ -3,6 +3,7 @@ import StatCard from "../../components/hr/StatCard";
 import PieChart from "../../components/hr/PieChart";
 import CVTable from "../../components/hr/CVTable";
 import CustomBarChart from "../../components/hr/BarChart";
+import StatusLegend from "../../components/hr/StatusLegend";
 import { useDispatch, useSelector } from "react-redux";
 import "./Dashboard.css"
 import { useEffect } from "react";
@@ -82,6 +83,8 @@ export default function Dashboard() {
           <PieChart />
           <CustomBarChart />
         </div>
+
+        <StatusLegend />
 
         <div className="table-section-wrapper">
            <div className="table-header-simple">
