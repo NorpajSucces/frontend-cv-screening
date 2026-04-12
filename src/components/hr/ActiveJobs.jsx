@@ -18,11 +18,12 @@ export default function ActiveJobs() {
             try {
                 const response = await hrJobService.getJobs();
                 const jobs = response.data;
-                const openJobs = jobs.filter(job => job.status === "open");
-                dispatch(setJobs(openJobs));
+                
+                // Keep all jobs (open and closed) visible for HR
+                dispatch(setJobs(jobs));
 
-                if (openJobs.length > 0 && !selectedJobId) {
-                    handleJobClick(openJobs[0]._id);
+                if (jobs.length > 0 && !selectedJobId) {
+                    handleJobClick(jobs[0]._id);
                 }
             } catch (err) {
                 console.error("Failed to fetch jobs:", err);
