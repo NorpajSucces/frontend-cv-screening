@@ -11,6 +11,7 @@ export default function CVSummaryDetail() {
   const { collapsed } = useSelector((state) => state.sidebar);
   const [candidate, setCandidate] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [showAcceptModal, setShowAcceptModal] = useState(false);
 
@@ -27,21 +28,31 @@ export default function CVSummaryDetail() {
   }, [id]);
 
   const handleAccept = () => {
+    setIsProcessing(true);
     candidateService.accept(id)
       .then(() => {
-        alert("Candidate accepted");
+        setIsProcessing(false);
         setShowAcceptModal(false);
+        navigate('/hr/candidates');
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setIsProcessing(false);
+      });
   };
 
   const handleReject = () => {
+    setIsProcessing(true);
     candidateService.reject(id)
       .then(() => {
-        alert("Candidate rejected");
+        setIsProcessing(false);
         setShowRejectModal(false);
+        navigate('/hr/candidates');
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setIsProcessing(false);
+      });
   };
 
   const handleDownloadCV = () => {
@@ -207,11 +218,11 @@ export default function CVSummaryDetail() {
                   This will mark the candidate as Rejected. You can change this status later if needed.
                 </p>
                 <div className="modal-actions">
-                  <button className="cancel" onClick={() => setShowRejectModal(false)}>
+                  <button className="cancel" onClick={() => setShowRejectModal(false)} disabled={isProcessing}>
                     Cancel
                   </button>
-                  <button className="confirm reject-btn" onClick={handleReject}>
-                    Yes, Reject
+                  <button className="confirm reject-btn" onClick={handleReject} disabled={isProcessing}>
+                    {isProcessing ? "Processing..." : "Yes, Reject"}
                   </button>
                 </div>
               </div>
@@ -227,11 +238,11 @@ export default function CVSummaryDetail() {
                   This will mark the candidate as Accepted and move them to the next stage.
                 </p>
                 <div className="modal-actions">
-                  <button className="cancel" onClick={() => setShowAcceptModal(false)}>
+                  <button className="cancel" onClick={() => setShowAcceptModal(false)} disabled={isProcessing}>
                     Cancel
                   </button>
-                  <button className="confirm accept-btn" onClick={handleAccept}>
-                    Yes, Accept
+                  <button className="confirm accept-btn" onClick={handleAccept} disabled={isProcessing}>
+                    {isProcessing ? "Processing..." : "Yes, Accept"}
                   </button>
                 </div>
               </div>
