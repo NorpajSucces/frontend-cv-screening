@@ -129,7 +129,7 @@ export default function CVSummaryDetail() {
                 <div className="score-label">
                   <p className="score-title">Overall CV Score</p>
                   <p className="score-subtitle">
-                    {score >= 80 ? "Excellent" : score >= 60 ? "Good" : score >= 40 ? "Average" : "Below Average"}
+                    {score >= 85 ? "Excellent" : score >= 70 ? "Good" : score >= 50 ? "Average" : "Below Average"}
                   </p>
                 </div>
               </div>
