@@ -1,15 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-    toggleSidebar,
-} from "../../store/slices/sidebarSlice";
-import { NavLink } from "react-router-dom";
+import { toggleSidebar } from "../../store/slices/sidebarSlice";
+import { logout } from "../../store/slices/authSlice";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 
 export default function Sidebar() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { collapsed } = useSelector(
         (state) => state.sidebar
     );
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+        navigate('/hr/login');
+    };
 
     return (
         <>
@@ -54,10 +60,10 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <NavLink to="/" className="nav-link" data-title="Log out">
+                            <a href="#" onClick={handleLogout} className="nav-link" data-title="Log out">
                                 <span className="material-symbols-rounded">logout</span>
                                 <span className="text">Log out</span>
-                            </NavLink>
+                            </a>
                         </li>
 
                     </ul>

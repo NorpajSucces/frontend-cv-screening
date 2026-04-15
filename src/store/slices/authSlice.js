@@ -3,8 +3,10 @@ import authService from '../../services/authService';
 
 // Extract token and user from localStorage safely
 const userStr = localStorage.getItem('user');
-const storedUser = userStr && userStr !== "undefined" ? JSON.parse(userStr) : null;
-const storedToken = localStorage.getItem('token') || null;
+const storedUser = userStr && userStr !== "undefined" && userStr !== "null" ? JSON.parse(userStr) : null;
+
+const tokenStr = localStorage.getItem('token');
+const storedToken = tokenStr && tokenStr !== "undefined" && tokenStr !== "null" ? tokenStr : null;
 
 const initialState = {
   user: storedUser,

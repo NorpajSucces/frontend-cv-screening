@@ -79,7 +79,26 @@ frontend-cv-screening/
 └── vite.config.js      # Module Bundler Configuration
 ```
 
-## 5. Setup & Local Development
+## 5. How to Use the System
+
+### For Applicants (Candidates)
+1. **Browse Jobs:** Navigate to the main Landing Page (`/`) to browse currently open job positions.
+2. **Apply:** Click on a job to view the description and requirements, then click **"Apply"**.
+3. **Submit Form:** Fill out your Name, Email, Phone Number, and upload your CV (must be in PDF format).
+4. **Processing:** Submit your application. The system will handle your CV, extract the text, and score your profile against the job requirements asynchronously.
+
+### For HR Administrator
+1. **Login:** Navigate to `/hr/login` and log in using the administrator credentials. *(Note: These credentials are created by running `node seed.js` in the backend).*
+2. **Dashboard Overview:** View live recruitment analytics and general statistics on the Dashboard (`/hr/dashboard`).
+3. **Manage Jobs:** Navigate to "Job Postings" to create, update, delete, or toggle the status of job vacancies.
+4. **Evaluate Candidates:** Navigate to "Candidates" to view incoming applications. 
+   - The application utilizes *progressive polling*, meaning you will see the candidate's status automatically change from `pending` to `processed` once the AI finishes the screening.
+5. **AI Insights:** Click "Detail" on a `processed` candidate to review the AI-Screening results, which include the Candidate's Score (0-100), key Strengths, and critical Weaknesses.
+6. **Decision Making:** Make a swift decision by clicking **"Accept"** or **"Reject"**. 
+   - *Accepting* sends an automated confirmation email. 
+   - *Rejecting* triggers the AI to write constructive, personalized feedback, which is then emailed to the candidate in the background.
+
+## 6. Setup & Local Development
 
 **1. Clone Repo & Install Modules:**
 ```bash

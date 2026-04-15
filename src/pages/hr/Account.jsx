@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Sidebar from '../../components/hr/Sidebar';
 import './Account.css';
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import authService from '../../services/authService';
 
 const Account = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -14,14 +16,16 @@ const Account = () => {
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Mock user data
-  const user = {
+  // Get real user data from Redux
+  const authUser = useSelector((state) => state.auth?.user);
+  const user = authUser || {
     name: 'HR Admin',
     email: 'hrdemo@gmail.com'
   };
 
-  const handleUpdatePassword = () => {
+  const handleUpdatePassword = async () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       setModalMessage('Please fill in all password fields.');
       setShowModal(true);
@@ -40,12 +44,27 @@ const Account = () => {
       return;
     }
 
-    setModalMessage('✓ Your password has been successfully updated!');
-    setShowModal(true);
+    setIsSubmitting(true);
+    try {
+      const response = await authService.changePassword({ 
+        currentPassword, 
+        newPassword, 
+        confirmPassword 
+      });
+      
+      setModalMessage('✓ ' + (response.message || 'Your password has been successfully updated!'));
+      setShowModal(true);
 
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (error) {
+      const errorMsg = error.response?.data?.message || 'Failed to update password. Please try again.';
+      setModalMessage('❌ ' + errorMsg);
+      setShowModal(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const closeModal = () => {
@@ -141,8 +160,12 @@ const Account = () => {
 
                 </div>
 
-                <button className="settings-button" onClick={handleUpdatePassword}>
-                  Update Password
+                <button 
+                  className="settings-button" 
+                  onClick={handleUpdatePassword}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Updating...' : 'Update Password'}
                 </button>
 
                 <p className="settings-note">
